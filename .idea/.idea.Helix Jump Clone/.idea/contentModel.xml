@@ -22,6 +22,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="BallMovement.cs" t="Include" />
           <e p="Entry.cs" t="Include" />
           <e p="GameplayManager.cs" t="Include" />
           <e p="GameplaySettings.cs" t="Include" />

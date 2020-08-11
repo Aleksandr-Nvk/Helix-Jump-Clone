@@ -213,8 +213,6 @@ MonoBehaviour:
   spawnDistance: {x: 0, y: 1, z: 0}
   negativeRate: 0.4
   emptyRate: 0.3
-  negativeMaterial: {fileID: 0}
-  positiveMaterial: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +519,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1446128625023702253, guid: 7aee6ec75b8d641cca0f430f2441a49c,
+        type: 3}
+      propertyPath: m_Radius
+      value: 0.1875
+      objectReference: {fileID: 0}
     - target: {fileID: 3513663822065606513, guid: 7aee6ec75b8d641cca0f430f2441a49c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -529,7 +532,7 @@ PrefabInstance:
     - target: {fileID: 3513663822065606513, guid: 7aee6ec75b8d641cca0f430f2441a49c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.394
+      value: 1.09
       objectReference: {fileID: 0}
     - target: {fileID: 3513663822065606513, guid: 7aee6ec75b8d641cca0f430f2441a49c,
         type: 3}
@@ -580,6 +583,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ball
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366206977736812878, guid: 7aee6ec75b8d641cca0f430f2441a49c,
+        type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7366206977736812878, guid: 7aee6ec75b8d641cca0f430f2441a49c,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7aee6ec75b8d641cca0f430f2441a49c, type: 3}
