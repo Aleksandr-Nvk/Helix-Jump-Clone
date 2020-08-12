@@ -1,17 +1,19 @@
 using UnityEngine;
 
-public class Entry : MonoBehaviour
+namespace Oduvaanchikk.HelixJumpClone.Runtime
 {
+    public class Entry : MonoBehaviour
+    {
 #pragma warning disable 0649
-
-    [SerializeField] private GameplaySettings gameplaySettings;
-
-    [SerializeField] private GameplayManager gameplayManager;
-
+        [SerializeField] private GameplaySettings _settings;
 #pragma warning restore
 
-    private void Awake()
-    {
-        gameplayManager.SetGameplaySettings(gameplaySettings);
+        private void Start()
+        {
+            var levelBuilder = new LevelBuilder(_settings);
+            
+            var gameplayManager = new GameplayManager(levelBuilder);
+            gameplayManager.Start();
+        }
     }
 }
