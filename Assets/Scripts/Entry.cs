@@ -12,7 +12,7 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
         {
             var levelBuilder = new LevelBuilder(_settings);
             
-            var gameplayManager = new GameplayManager(_settings, levelBuilder);
+            var gameplayManager = new GameplayManager(levelBuilder);
             gameplayManager.Start();
         }
     }

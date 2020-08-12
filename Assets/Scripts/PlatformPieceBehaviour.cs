@@ -5,7 +5,9 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
     public class PlatformPieceBehaviour : MonoBehaviour
     {
 #pragma warning disable 0649
+        
         [SerializeField] private MeshRenderer currentMeshRenderer;
+        
 #pragma warning restore
 
         private PlatformPieceType _type;
@@ -22,12 +24,6 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
                 : PlatformPieceType.Positive;
 
             SetColor(_type);
-        }
-
-        private enum PlatformPieceType
-        {
-            Negative,
-            Positive
         }
 
         /// <summary>
