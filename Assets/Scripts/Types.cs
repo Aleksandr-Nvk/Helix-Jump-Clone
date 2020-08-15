@@ -1,8 +1,18 @@
 namespace Oduvaanchikk.HelixJumpClone.Runtime
 {
-    internal enum PlatformPieceType
+    public enum PieceType
     {
-        Negative,
-        Positive
+        Enemy,
+        Friendly,
+        Flying,
+        Empty
+    }
+
+    public enum PiecePrefabType
+    {
+        EnemyPrefab,
+        FriendlyPrefab,
+        FlyingPrefab,
+        EmptyPrefab
     }
 }

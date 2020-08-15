@@ -4,24 +4,36 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
 {
     public class LevelBuilder
     {
-        private readonly GameplaySettings _settings;
+        private readonly LevelSettings _settings;
 
-        public LevelBuilder(GameplaySettings settings)
+        private readonly Vector3 _rotationStep;
+        private readonly Vector3 _positionStep;
+
+        public LevelBuilder(LevelSettings settings, FromPieceTypeToPrefab instancesDictionary)
         {
             _settings = settings;
+            _positionStep = settings.SpawnDistance;
+            
+            _rotationStep = new Vector3(0f, 45f, 0f);
         }
 
         /// <summary>
-        /// Builds a new level, according to gameplay settings
+        /// Builds a new level, according to level settings
         /// </summary>
-        /// <param name="settings"> Settings to follow </param>
         public void Build()
         {
-            var spawnPosition = Vector3.zero;
+            var position = Vector3.zero;
             for (var i = 0; i < _settings.Count; i++)
             {
-                Object.Instantiate(_settings.PlatformPrefab, spawnPosition, Quaternion.identity);
-                spawnPosition -= _settings.SpawnDistance;
+                var rotation = Vector3.zero;
+                for (var j = 0; j < 8; j++)
+                {
+                    var instance = Object.Instantiate(_settings.FriendlyPiece, position, Quaternion.Euler(rotation));
+                    
+                    rotation += _rotationStep;
+                }
+
+                position -= _positionStep;
             }
         }
     }

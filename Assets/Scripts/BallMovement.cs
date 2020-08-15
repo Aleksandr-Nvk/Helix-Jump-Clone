@@ -11,6 +11,6 @@ public class BallMovement : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         ball.velocity = Vector3.zero;
-        ball.AddForce(Vector3.up * 2, ForceMode.Impulse);
+        ball.AddForce(Vector3.up * 4, ForceMode.Impulse);
     }
 }
