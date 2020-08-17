@@ -3,6 +3,11 @@ using UnityEngine;
 
 namespace Oduvaanchikk.HelixJumpClone.Runtime
 {
-    public abstract class FromPieceTypeToPrefab : Dictionary<PieceType, GameObject>
-    { }
+    public class FromPieceTypeToPrefab : Dictionary<PieceType, GameObject>
+    {
+    }
+    
+    public class FromPieceTypeToProbability : Dictionary<PieceType, float>
+    {            
+    }
 }

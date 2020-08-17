@@ -1,7 +1,5 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace Oduvaanchikk.HelixJumpClone.Runtime
 {
@@ -13,12 +11,16 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
         
 #pragma warning restore
 
+
+        
         private FromPieceTypeToPrefab _pieces;
 
-        private Dictionary<PieceType, float> _piecesProbabilities;
+        private FromPieceTypeToProbability _piecesProbabilities;
         
-        private void Awake()
+        private void Start()
         {
+            _pieces = new FromPieceTypeToPrefab();
+            
             var levelBuilder = new LevelBuilder(_settings, _pieces);
             
             var gameplayManager = new GameplayManager(levelBuilder);
