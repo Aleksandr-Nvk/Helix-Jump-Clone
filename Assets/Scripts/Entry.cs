@@ -1,27 +1,21 @@
 using UnityEngine;
+using Tools;
 
-namespace Oduvaanchikk.HelixJumpClone.Runtime
+public class Entry : MonoBehaviour
 {
-    public class Entry : MonoBehaviour
-    {
 #pragma warning disable 0649
         
-        [SerializeField] private LevelSettings _settings;
+    [SerializeField] private LevelSettings _settings;
         
 #pragma warning restore
-        
-        private FromPieceTypeToPrefab _pieces;
 
-        private FromPieceTypeToProbability _piecesProbabilities;
+    private FromPieceTypeToProbability _piecesProbabilities;
         
-        private void Start()
-        {
-            _pieces = new FromPieceTypeToPrefab();
+    private void Start()
+    {
+        var levelBuilder = new LevelBuilder(_settings);
             
-            var levelBuilder = new LevelBuilder(_settings, _pieces); // ???
-            
-            var gameplayManager = new GameplayManager(levelBuilder);
-            gameplayManager.Start();
-        }
+        var gameplayManager = new GameplayManager(levelBuilder);
+        gameplayManager.Start();
     }
 }

@@ -1,4 +1,4 @@
-namespace Oduvaanchikk.HelixJumpClone.Runtime
+namespace Dictionaries.Pairs
 {
     public abstract class BasePair<T1, T2>
     {

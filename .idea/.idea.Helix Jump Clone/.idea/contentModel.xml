@@ -23,18 +23,29 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BallMovement.cs" t="Include" />
-          <e p="BasePair.cs" t="Include" />
-          <e p="BasePairList.cs" t="Include" />
+          <e p="Dictionaries" t="Include">
+            <e p="Lists" t="Include">
+              <e p="BasePairList.cs" t="Include" />
+              <e p="PieceTypeToPrefab.cs" t="Include" />
+              <e p="ProbabilityToPieceType.cs" t="Include" />
+            </e>
+            <e p="Pairs" t="Include">
+              <e p="BasePair.cs" t="Include" />
+              <e p="PieceTypeToPrefabPair.cs" t="Include" />
+              <e p="ProbabilityToPieceTypePair.cs" t="Include" />
+            </e>
+          </e>
           <e p="Dictionaries.cs" t="Include" />
           <e p="Entry.cs" t="Include" />
           <e p="GameplayManager.cs" t="Include" />
-          <e p="LevelBuilder.cs" t="Include" />
           <e p="LevelSettings.cs" t="Include" />
-          <e p="PieceCreator.cs" t="Include" />
-          <e p="PieceModel.cs" t="Include" />
-          <e p="PieceTypeToPrefabPair.cs" t="Include" />
-          <e p="PieceTypeToProbabilityPair.cs" t="Include" />
-          <e p="ProbabilityToPieceTypeList.cs" t="Include" />
+          <e p="Models" t="Include">
+            <e p="PieceModel.cs" t="Include" />
+          </e>
+          <e p="Tools" t="Include">
+            <e p="LevelBuilder.cs" t="Include" />
+            <e p="PieceCreator.cs" t="Include" />
+          </e>
           <e p="Types.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">

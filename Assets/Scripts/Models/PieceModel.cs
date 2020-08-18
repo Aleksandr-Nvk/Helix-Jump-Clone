@@ -1,4 +1,4 @@
-namespace Oduvaanchikk.HelixJumpClone.Runtime
+namespace Models
 {
     public class PieceModel
     {
@@ -14,7 +14,7 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
 
         public PieceModel(PieceType type)
         {
-            switch (type)
+            switch (type) // configurations for each piece type
             {
                 case PieceType.Friendly:
                     _isFriendly = true;

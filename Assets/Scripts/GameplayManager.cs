@@ -1,17 +1,16 @@
-namespace Oduvaanchikk.HelixJumpClone.Runtime
+using Tools;
+
+public class GameplayManager
 {
-    public class GameplayManager
+    private readonly LevelBuilder _levelBuilder;
+
+    public GameplayManager(LevelBuilder levelBuilder)
     {
-        private readonly LevelBuilder _levelBuilder;
+        _levelBuilder = levelBuilder;
+    }
 
-        public GameplayManager(LevelBuilder levelBuilder)
-        {
-            _levelBuilder = levelBuilder;
-        }
-
-        public void Start()
-        {
-            _levelBuilder.Build(); // building a level
-        }
+    public void Start()
+    {
+        _levelBuilder.Build(); // building a level
     }
 }

@@ -164,22 +164,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05e903376b184b978425cb83edd1b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _platformsCount: 50
   _spawnDistance: {x: 0, y: 1, z: 0}
-  _count: 50
-  _piecesProbability:
-  - Key: 0.5
-    Value: 1
-  - Key: 0.2
-    Value: 0
-  - Key: 0.3
-    Value: 3
-  _piecesPrefab:
-  - Key: 1
-    Value: {fileID: 2466409367248160891, guid: 68d7384209ef647cd83d8d3c1ee3b089, type: 3}
-  - Key: 0
-    Value: {fileID: 6503339116306158541, guid: f8af751e80f314c62b4a42202530d920, type: 3}
-  - Key: 3
-    Value: {fileID: 5656762151299090272, guid: a6de3c27e7d9247a7a7298b4c5f134c8, type: 3}
+  _probabilityToPieceType:
+    _list:
+    - Key: 0.4
+      Value: 1
+    - Key: 0.3
+      Value: 0
+    - Key: 0.2
+      Value: 3
+  _pieceTypeToPrefab:
+    _list:
+    - Key: 1
+      Value: {fileID: 2466409367248160891, guid: 68d7384209ef647cd83d8d3c1ee3b089,
+        type: 3}
+    - Key: 0
+      Value: {fileID: 6503339116306158541, guid: f8af751e80f314c62b4a42202530d920,
+        type: 3}
+    - Key: 3
+      Value: {fileID: 5656762151299090272, guid: a6de3c27e7d9247a7a7298b4c5f134c8,
+        type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,8 +420,8 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
 --- !u!23 &1751773782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -485,8 +490,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148557144012}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.44, y: 1.09, z: -0.212}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.75, y: 0.27, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

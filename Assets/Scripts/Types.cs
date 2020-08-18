@@ -1,18 +1,15 @@
-namespace Oduvaanchikk.HelixJumpClone.Runtime
+public enum PieceType
 {
-    public enum PieceType
-    {
-        Enemy,
-        Friendly,
-        Flying,
-        Empty
-    }
+    Enemy,
+    Friendly,
+    Flying,
+    Empty
+}
 
-    public enum PiecePrefabType
-    {
-        EnemyPrefab,
-        FriendlyPrefab,
-        FlyingPrefab,
-        EmptyPrefab
-    }
+public enum PiecePrefabType
+{
+    EnemyPrefab,
+    FriendlyPrefab,
+    FlyingPrefab,
+    EmptyPrefab
 }

@@ -1,7 +1,7 @@
-using System;
 using UnityEngine;
+using System;
 
-namespace Oduvaanchikk.HelixJumpClone.Runtime
+namespace Dictionaries.Pairs
 {
     [Serializable]
     public class PieceTypeToPrefabPair : BasePair<PiecePrefabType, GameObject>

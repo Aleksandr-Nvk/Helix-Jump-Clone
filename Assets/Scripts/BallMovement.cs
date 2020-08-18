@@ -10,6 +10,14 @@ public class BallMovement : MonoBehaviour
     
     private void OnCollisionEnter(Collision collision)
     {
+        Jump();
+    }
+
+    /// <summary>
+    /// Makes the ball jump
+    /// </summary>
+    private void Jump()
+    {
         ball.velocity = Vector3.zero;
         ball.AddForce(Vector3.up * 4, ForceMode.Impulse);
     }
