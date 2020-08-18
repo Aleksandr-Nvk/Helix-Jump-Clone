@@ -14,6 +14,9 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
         [SerializeField] private int _count = 50; // platforms count
 
         [SerializeField] private List<PieceTypeToProbabilityPair> _piecesProbability;
+        
+        [SerializeField] private ProbabilityToPieceTypeList _probabilityToPieceType; // вот это должно появиться в инспекторе
+        
         [SerializeField] private List<PieceTypeToPrefabPair> _piecesPrefab;
         
 #pragma warning restore
