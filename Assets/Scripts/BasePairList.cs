@@ -6,7 +6,7 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
     [Serializable]
     public abstract class BasePairList<T1, T2>
     {
-        public List<BasePair<T1, T2>> List;
+        protected abstract IEnumerable<BasePair<T1, T2>> List { get; }
 
         public Dictionary<T1, T2> ToDictionary()
         {
