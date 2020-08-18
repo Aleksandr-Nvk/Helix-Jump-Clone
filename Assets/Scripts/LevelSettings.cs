@@ -8,25 +8,21 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
 #pragma warning disable 0649
 
         [Header("Platforms settings")]
-        [SerializeField] private GameObject _friendlyPiece;
-        [SerializeField] private GameObject _enemyPiece;
-        [SerializeField] private GameObject _flyingPiece;
         
         [SerializeField] private Vector3 _spawnDistance = new Vector3(0f, 1f, 0f);
         
         [SerializeField] private int _count = 50; // platforms count
 
         [SerializeField] private List<PieceTypeToProbabilityPair> _piecesProbability;
+        [SerializeField] private List<PieceTypeToPrefabPair> _piecesPrefab;
         
 #pragma warning restore
 
-        public GameObject FriendlyPiece => _friendlyPiece;
-        public GameObject EnemyPiece => _enemyPiece;
-        public GameObject FlyingPiece => _flyingPiece;
         public Vector3 SpawnDistance => _spawnDistance;
         public int Count => _count;
 
         private FromPieceTypeToProbability _piecesProbabilityInternal;
+        private FromPieceTypeToPrefab _piecesPrefabInternal;
         
         public FromPieceTypeToProbability PiecesProbability
         {
@@ -43,6 +39,23 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
                 }
 
                 return _piecesProbabilityInternal;
+            }
+        }
+        public FromPieceTypeToPrefab PiecesPrefab
+        {
+            get
+            {
+                if (_piecesPrefabInternal == null)
+                    _piecesPrefabInternal = new FromPieceTypeToPrefab();
+                
+                _piecesPrefabInternal.Clear();
+
+                foreach (var pair in _piecesPrefab)
+                {
+                    _piecesPrefabInternal.Add(pair.Key, pair.Value);
+                }
+
+                return _piecesPrefabInternal;
             }
         }
     }

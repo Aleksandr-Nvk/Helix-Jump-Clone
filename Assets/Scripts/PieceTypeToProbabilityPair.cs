@@ -3,10 +3,9 @@ using System;
 namespace Oduvaanchikk.HelixJumpClone.Runtime
 {
     [Serializable]
-    public class PieceTypeToProbabilityPair : BasePair<PieceType, float>
+    public class PieceTypeToProbabilityPair : BasePair<float, PieceType>
     {
-        public PieceTypeToProbabilityPair(PieceType key, float value) : base(key, value)
-        {
-        }
+        public PieceTypeToProbabilityPair(float key, PieceType value) : base(key, value)
+        { }
     }
 }

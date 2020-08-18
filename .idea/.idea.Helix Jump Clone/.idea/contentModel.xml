@@ -23,6 +23,7 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="BallMovement.cs" t="Include" />
+          <e p="BasePair.cs" t="Include" />
           <e p="Dictionaries.cs" t="Include" />
           <e p="Entry.cs" t="Include" />
           <e p="GameplayManager.cs" t="Include" />
@@ -30,7 +31,8 @@
           <e p="LevelSettings.cs" t="Include" />
           <e p="PieceCreator.cs" t="Include" />
           <e p="PieceModel.cs" t="Include" />
-          <e p="RandomPieceWithKey.cs" t="Include" />
+          <e p="PieceTypeToPrefabPair.cs" t="Include" />
+          <e p="PieceTypeToProbabilityPair.cs" t="Include" />
           <e p="Types.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">

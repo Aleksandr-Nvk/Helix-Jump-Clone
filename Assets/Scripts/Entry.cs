@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Oduvaanchikk.HelixJumpClone.Runtime
@@ -10,8 +9,6 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
         [SerializeField] private LevelSettings _settings;
         
 #pragma warning restore
-
-
         
         private FromPieceTypeToPrefab _pieces;
 
@@ -21,7 +18,7 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
         {
             _pieces = new FromPieceTypeToPrefab();
             
-            var levelBuilder = new LevelBuilder(_settings, _pieces);
+            var levelBuilder = new LevelBuilder(_settings, _pieces); // ???
             
             var gameplayManager = new GameplayManager(levelBuilder);
             gameplayManager.Start();

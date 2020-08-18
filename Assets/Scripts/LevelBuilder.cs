@@ -9,12 +9,16 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
         private readonly Vector3 _rotationStep;
         private readonly Vector3 _positionStep;
 
+        private readonly PieceCreator _pieceCreator;
+        
         public LevelBuilder(LevelSettings settings, FromPieceTypeToPrefab instancesDictionary)
         {
             _settings = settings;
             _positionStep = settings.SpawnDistance;
             
             _rotationStep = new Vector3(0f, 45f, 0f);
+            
+            _pieceCreator = new PieceCreator(_settings);
         }
 
         /// <summary>
@@ -28,7 +32,8 @@ namespace Oduvaanchikk.HelixJumpClone.Runtime
                 var rotation = Vector3.zero;
                 for (var j = 0; j < 8; j++)
                 {
-                    var instance = Object.Instantiate(_settings.FriendlyPiece, position, Quaternion.Euler(rotation));
+                    var prefabType = _pieceCreator.CreateRandom().Type;
+                    var instance = Object.Instantiate(_settings.PiecesPrefab[prefabType], position, Quaternion.Euler(rotation));
                     
                     rotation += _rotationStep;
                 }

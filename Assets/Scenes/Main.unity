@@ -164,15 +164,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05e903376b184b978425cb83edd1b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _friendlyPiece: {fileID: 2466409367248160891, guid: 68d7384209ef647cd83d8d3c1ee3b089,
-    type: 3}
-  _enemyPiece: {fileID: 6503339116306158541, guid: f8af751e80f314c62b4a42202530d920,
-    type: 3}
-  _flyingPiece: {fileID: 4624636841864408206, guid: 7ee51004698164804883c1b81ede704e,
-    type: 3}
   _spawnDistance: {x: 0, y: 1, z: 0}
   _count: 50
-  _piecesProbability: []
+  _piecesProbability:
+  - Key: 0.5
+    Value: 1
+  - Key: 0.2
+    Value: 0
+  - Key: 0.3
+    Value: 3
+  _piecesPrefab:
+  - Key: 1
+    Value: {fileID: 2466409367248160891, guid: 68d7384209ef647cd83d8d3c1ee3b089, type: 3}
+  - Key: 0
+    Value: {fileID: 6503339116306158541, guid: f8af751e80f314c62b4a42202530d920, type: 3}
+  - Key: 3
+    Value: {fileID: 5656762151299090272, guid: a6de3c27e7d9247a7a7298b4c5f134c8, type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
