@@ -30,11 +30,6 @@ namespace Models
                     _isFlying = true;
                     _type = PiecePrefabType.FlyingPrefab;
                     break;
-                
-                case PieceType.Empty:
-                    _isFriendly = true;
-                    _type = PiecePrefabType.EmptyPrefab;
-                    break;
             }
         }
     }
