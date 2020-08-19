@@ -33,6 +33,7 @@ namespace Tools
             var rotation = Vector3.zero;
 
             Object.Instantiate(_settings.StartPlatform);
+            Object.Instantiate(_settings.Ball);
             
             var pieceToPrefabDictionary = _settings.PieceTypeToPrefab.ToDictionary();
 

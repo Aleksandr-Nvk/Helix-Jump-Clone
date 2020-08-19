@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d05e903376b184b978425cb83edd1b60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _ball: {fileID: 4690916561573541617, guid: 49b165748f6074ce3b4e5739ec65fe06, type: 3}
   _platformsCount: 50
   _spawnDistance: {x: 0, y: 1, z: 0}
   _startPlatform: {fileID: 5319528565776352958, guid: 348de1f5693e943198b2aab2dedb0bc7,
@@ -224,7 +225,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: DirectionalLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -317,7 +318,7 @@ GameObject:
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: MainCamera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
