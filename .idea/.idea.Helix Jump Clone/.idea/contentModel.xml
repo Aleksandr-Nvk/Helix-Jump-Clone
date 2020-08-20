@@ -22,6 +22,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="Consts.cs" t="Include" />
           <e p="Dictionaries" t="Include">
             <e p="Lists" t="Include">
               <e p="BasePairList.cs" t="Include" />
@@ -36,13 +37,17 @@
           </e>
           <e p="Dictionaries.cs" t="Include" />
           <e p="Entry.cs" t="Include" />
-          <e p="LevelSettings.cs" t="Include" />
-          <e p="Main Gameplay" t="Include">
+          <e p="MainGameplay" t="Include">
             <e p="BallMovement.cs" t="Include" />
+          </e>
+          <e p="Managers" t="Include">
             <e p="GameplayManager.cs" t="Include" />
           </e>
           <e p="Models" t="Include">
             <e p="PieceModel.cs" t="Include" />
+          </e>
+          <e p="Settings" t="Include">
+            <e p="LevelSettings.cs" t="Include" />
           </e>
           <e p="Tools" t="Include">
             <e p="LevelBuilder.cs" t="Include" />

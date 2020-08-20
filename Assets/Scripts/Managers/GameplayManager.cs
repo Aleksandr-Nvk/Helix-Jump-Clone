@@ -1,6 +1,6 @@
 using Tools;
 
-namespace Main_Gameplay
+namespace Managers
 {
     public class GameplayManager
     {

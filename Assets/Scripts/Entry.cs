@@ -1,5 +1,6 @@
-using Main_Gameplay;
 using UnityEngine;
+using Managers;
+using Settings;
 using Tools;
 
 public class Entry : MonoBehaviour
@@ -14,7 +15,9 @@ public class Entry : MonoBehaviour
         
     private void Start()
     {
-        var levelBuilder = new LevelBuilder(_settings);
+        var pieceCreator = new PieceCreator(_settings);
+        
+        var levelBuilder = new LevelBuilder(_settings, pieceCreator);
             
         var gameplayManager = new GameplayManager(levelBuilder);
         gameplayManager.Start();

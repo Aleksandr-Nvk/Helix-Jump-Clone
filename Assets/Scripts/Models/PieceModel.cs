@@ -2,10 +2,10 @@ namespace Models
 {
     public class PieceModel
     {
-        private PiecePrefabType _type;
+        private readonly PiecePrefabType _type;
 
-        private bool _isFriendly;
-        private bool _isFlying;
+        private readonly bool _isFriendly;
+        private readonly bool _isFlying;
 
         public PiecePrefabType Type => _type;
         

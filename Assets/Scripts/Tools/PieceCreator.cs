@@ -1,20 +1,22 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using Settings;
 using Models;
 
 namespace Tools
 {
     public class PieceCreator
     {
-        private readonly Dictionary<float, PieceType> _inputDictionary;
+        private readonly Dictionary<float, PieceType> _inputDictionary = new Dictionary<float, PieceType>();
 
         public PieceCreator(LevelSettings levelSettings)
         {
             var newDictionary = levelSettings.ProbabilityToPieceType.ToDictionary();
-            _inputDictionary = new Dictionary<float, PieceType>(newDictionary.Count);
-            foreach (var element in newDictionary)
+            
+            foreach (var pair in newDictionary)
             {
-                _inputDictionary.Add(element.Key, element.Value);
+                _inputDictionary.Add(pair.Key, pair.Value);
             }
         }
         
@@ -24,24 +26,18 @@ namespace Tools
         /// <returns> Random Piece Model </returns>
         public PieceModel CreateRandom()
         {
-            var piece = new PieceModel(GetRandomType());
-            return piece;
+            return new PieceModel(GetRandomType());
         }
         
         /// <summary>
         /// Chooses random Piece Type depending on randomness probabilities
         /// </summary>
-        /// <returns></returns>
+        /// <returns> Random piece type </returns>
         private PieceType GetRandomType()
         {
-            var probabilities = new List<float>();
-            
             PieceType result = default;
 
-            foreach (var key in _inputDictionary)
-            {
-                probabilities.Add(key.Key); // all probabilities list
-            }
+            var probabilities = _inputDictionary.Select(pair => pair.Key).ToList();
 
             probabilities.Sort();
             probabilities.Reverse();
@@ -52,7 +48,7 @@ namespace Tools
             {
                 intervals.Add(intervals[i] + probabilities[i]); // intervals with probabilities checkpoints
             }
-            
+
             var random = Random.value;
             
             for (var i = 0; i < probabilities.Count; i++)
@@ -62,6 +58,7 @@ namespace Tools
                     result = _inputDictionary[probabilities[i]];
                 }
             }
+            
             return result;
         }
     }

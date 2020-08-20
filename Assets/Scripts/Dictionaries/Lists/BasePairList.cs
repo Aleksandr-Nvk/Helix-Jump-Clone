@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Dictionaries.Pairs;
+using System.Linq;
 
 namespace Dictionaries.Lists
 {
@@ -13,14 +14,7 @@ namespace Dictionaries.Lists
         /// <returns> New dictionary from the list </returns>
         public Dictionary<T1, T2> ToDictionary()
         {
-            var newDictionary = new Dictionary<T1, T2>();
-            
-            foreach (var item in List)
-            {
-                newDictionary.Add(item.Key, item.Value);
-            }
-
-            return newDictionary;
+            return List.ToDictionary(item => item.Key, item => item.Value);
         }
     }
 }

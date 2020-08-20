@@ -2,34 +2,34 @@
 using Random = UnityEngine.Random;
 using System.Collections.Generic;
 using UnityEngine;
+using Settings;
 
 namespace Tools
 {
     public class LevelBuilder
     {
         private readonly LevelSettings _settings;
-
-        private readonly Vector3 _rotationStep;
-        private readonly Vector3 _positionStep;
-
-        private readonly PieceCreator _pieceCreator;
         
-        public LevelBuilder(LevelSettings settings)
+        private readonly PieceCreator _pieceCreator;
+
+        private readonly Vector3 _rotationStep = new Vector3(0f, Consts.PieceAngle, 0f);
+        
+        private readonly List<PiecePrefabType> _allPlatformPieceTypes = new List<PiecePrefabType>();
+        
+        private List<GameObject> _allPlatformPieces = new List<GameObject>();
+
+        public LevelBuilder(LevelSettings settings, PieceCreator pieceCreator)
         {
             _settings = settings;
-            
-            _positionStep = settings.SpawnDistance;
-            _rotationStep = new Vector3(0f, 45, 0f);
-            
-            _pieceCreator = new PieceCreator(_settings);
+            _pieceCreator = pieceCreator;
         }
 
         /// <summary>
-        /// Builds a new level, according to level settings
+        /// Builds a new level from given level settings
         /// </summary>
         public void Build()
         {
-            var position = new Vector3(0, -1, 0);
+            var position = Vector3.down;
             var rotation = Vector3.zero;
 
             Object.Instantiate(_settings.StartPlatform);
@@ -42,9 +42,11 @@ namespace Tools
                 var platformPiecesTypes = CreatePiecePrefabTypesList();
 
                 DeleteRandomPiecePrefabTypes(platformPiecesTypes);
-
-                InstantiatePiecesFromTypes(platformPiecesTypes, pieceToPrefabDictionary, rotation, ref position);
+                
+                _allPlatformPieceTypes.AddRange(platformPiecesTypes);
             }
+            
+            _allPlatformPieces = InstantiatePiecesFromTypes(_allPlatformPieceTypes, pieceToPrefabDictionary, rotation, ref position);
         }
 
         /// <summary>
@@ -53,8 +55,8 @@ namespace Tools
         /// <returns> List with random piece prefab types </returns>
         private List<PiecePrefabType> CreatePiecePrefabTypesList()
         {
-            var internalList = new List<PiecePrefabType>(8);
-            for (var j = 0; j < 8; j++)
+            var internalList = new List<PiecePrefabType>();
+            for (var j = 0; j < Consts.PiecesCount; j++)
             {
                 var prefabType = _pieceCreator.CreateRandom().Type;
                 internalList.Add(prefabType);
@@ -82,23 +84,34 @@ namespace Tools
         /// Instantiates prefabs depending on each piece prefab type from the list
         /// </summary>
         /// <param name="platformPiecesTypes"> List to instantiate prefabs from </param>
-        /// <param name="pieceToPrefabDictionary"> Prefabs settings </param>
-        /// <param name="rotation"> Piece rotation </param>
-        /// <param name="position"> Piece position </param>
-        private void InstantiatePiecesFromTypes(List<PiecePrefabType> platformPiecesTypes,
+        /// <param name="pieceToPrefabDictionary"> Prefabs and prefab types dictionary </param>
+        /// <param name="rotation"> Current piece rotation </param>
+        /// <param name="position"> Current piece position </param>
+        /// <returns> Spawned pieces list </returns>
+        private List<GameObject> InstantiatePiecesFromTypes(List<PiecePrefabType> platformPiecesTypes,
             Dictionary<PiecePrefabType, GameObject> pieceToPrefabDictionary, Vector3 rotation, ref Vector3 position)
         {
+            var spawnedPieces = new List<GameObject>();
+            var positionStep = _settings.SpawnDistance;
+
+            var itemIndex = 0;
             foreach (var piecePrefabType in platformPiecesTypes)
             {
+                itemIndex++;
+                
                 if (piecePrefabType != PiecePrefabType.EmptyPrefab)
                 {
-                    Object.Instantiate(pieceToPrefabDictionary[piecePrefabType], position, Quaternion.Euler(rotation));
+                    var piece = Object.Instantiate(pieceToPrefabDictionary[piecePrefabType], position, Quaternion.Euler(rotation));
+                    spawnedPieces.Add(piece);
                 }
-                    
+
+                if (itemIndex % Consts.PiecesCount == 0)
+                    position -= positionStep;
+
                 rotation += _rotationStep;
             }
-                
-            position -= _positionStep;
+            
+            return spawnedPieces;
         }
     }
 }
