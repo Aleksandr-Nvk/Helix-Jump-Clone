@@ -40,6 +40,7 @@ namespace MainGameplay
         private void OnCollisionEnter(Collision collision)
         {
             Jump();
+            print(collision.collider.gameObject.name);
         }
 
         /// <summary>
@@ -48,7 +49,7 @@ namespace MainGameplay
         private void Jump()
         {
             _ball.velocity = Vector3.zero;
-            _ball.AddForce(Vector3.up * 4, ForceMode.Impulse);
+            _ball.AddForce(Vector3.up * 4f, ForceMode.Impulse);
         }
     }
 }

@@ -54,9 +54,7 @@ namespace Tools
             for (var i = 0; i < probabilities.Count; i++)
             {
                 if (random >= intervals[i] && random < intervals[i + 1]) // iterating and checking the similarities
-                {
                     result = _inputDictionary[probabilities[i]];
-                }
             }
             
             return result;
