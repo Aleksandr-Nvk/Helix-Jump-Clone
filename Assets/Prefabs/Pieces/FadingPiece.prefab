@@ -9,12 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4624636841864408205}
+  - component: {fileID: 108326589532188688}
+  - component: {fileID: 7705652267707026609}
   m_Layer: 0
   m_Name: FadingPiece
-  m_TagString: Untagged
+  m_TagString: FadingPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &4624636841864408205
 Transform:
@@ -31,6 +33,37 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &108326589532188688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624636841864408206}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1267a9963e8f4fea952cb6417d7bc926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 7705652267707026609}
+  _meshRenderer: {fileID: 4624636842753928045}
+  _collider: {fileID: 1617018535634517481}
+--- !u!54 &7705652267707026609
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624636841864408206}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &4624636842753928047
 GameObject:
   m_ObjectHideFlags: 0
@@ -45,10 +78,10 @@ GameObject:
   - component: {fileID: 1617018535634517481}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: FadingPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967295
+  m_StaticEditorFlags: 4
   m_IsActive: 1
 --- !u!4 &4624636842753928046
 Transform:

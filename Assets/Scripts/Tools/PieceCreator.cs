@@ -28,7 +28,34 @@ namespace Tools
         {
             return new PieceModel(GetRandomType());
         }
-        
+
+        /// <summary>
+        /// Creates new Friendly Piece Model
+        /// </summary>
+        /// <returns> Friendly Piece Model </returns>
+        public PieceModel CreateFriendly()
+        {
+            return new PieceModel(PieceType.Friendly);
+        }
+
+        /// <summary>
+        /// Creates new Enemy Piece Model
+        /// </summary>
+        /// <returns> Enemy Piece Model </returns>
+        public PieceModel CreateEnemy()
+        {
+            return new PieceModel(PieceType.Enemy);
+        }
+
+        /// <summary>
+        /// Creates new Flying Piece Model
+        /// </summary>
+        /// <returns> Flying Piece Model </returns>
+        public PieceModel CreateFlying()
+        {
+            return new PieceModel(PieceType.Flying);
+        }
+
         /// <summary>
         /// Chooses random Piece Type depending on randomness probabilities
         /// </summary>

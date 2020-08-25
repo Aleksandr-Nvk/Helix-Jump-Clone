@@ -438,6 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 660504363}
+  _ballBehaviour: {fileID: 7680233496331103896}
 --- !u!4 &1526092876
 Transform:
   m_ObjectHideFlags: 0
@@ -541,13 +542,27 @@ GameObject:
   m_Component:
   - component: {fileID: 4242996012120315955}
   - component: {fileID: 2684998495535902437}
+  - component: {fileID: 587137877756922195}
   m_Layer: 0
   m_Name: BallParent
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &587137877756922195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587137877756922194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8436315e707f4602a95a042b654514b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotationSpeed: 20
 --- !u!135 &1680146173163143763
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -669,7 +684,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _ball: {fileID: 3450910924527931147}
   _ballParent: {fileID: 2684998495535902437}
-  _rotationSpeed: 20
 --- !u!1 &8238989214909064078
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,7 +700,7 @@ GameObject:
   - component: {fileID: 1680146173163143763}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
