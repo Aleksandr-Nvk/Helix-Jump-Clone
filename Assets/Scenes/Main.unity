@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings: {fileID: 660504363}
-  _ballBehaviour: {fileID: 7680233496331103896}
+  _ballPositionChecker: {fileID: 8238989214909064079}
 --- !u!4 &1526092876
 Transform:
   m_ObjectHideFlags: 0
@@ -695,9 +695,10 @@ GameObject:
   - component: {fileID: 8727155453145758004}
   - component: {fileID: 5670821587076691601}
   - component: {fileID: 7590317417058943579}
-  - component: {fileID: 7680233496331103896}
   - component: {fileID: 3450910924527931147}
   - component: {fileID: 1680146173163143763}
+  - component: {fileID: 7680233496331103896}
+  - component: {fileID: 8238989214909064079}
   m_Layer: 0
   m_Name: Ball
   m_TagString: Player
@@ -705,6 +706,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8238989214909064079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8238989214909064078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 904569ef83cc446699d727ac3d843435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8727155453145758004
 Transform:
   m_ObjectHideFlags: 0

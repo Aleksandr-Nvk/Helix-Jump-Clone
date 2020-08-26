@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
-using Interfaces;
+﻿using UnityEngine;
 
 namespace MainGameplay
 {
@@ -13,10 +11,6 @@ namespace MainGameplay
         
     #pragma warning restore
 
-        private List<float> _platformsYPositions = new List<float>();
-        
-        private List<IPiece[]> _piecesBehaviours = new List<IPiece[]>();
-
         private void Start()
         {
             // ball start position validation
@@ -25,20 +19,6 @@ namespace MainGameplay
             Physics.Raycast(ray, out var data);
             
             // TODO: Check ray length
-        }
-
-        private void Update()
-        {
-            if (transform.position.y < _platformsYPositions[0])
-            {
-                foreach (var piece in _piecesBehaviours[0])
-                {
-                    piece?.Delete(1f);
-                }
-                
-                _platformsYPositions.Remove(_platformsYPositions[0]);
-                _piecesBehaviours.Remove(_piecesBehaviours[0]);
-            }
         }
 
         private void OnCollisionEnter(Collision collision)
@@ -53,17 +33,6 @@ namespace MainGameplay
         {
             _ball.velocity = Vector3.zero;
             _ball.AddForce(Vector3.up * 1f, ForceMode.Impulse);
-        }
-
-        /// <summary>
-        /// Sets built level data
-        /// </summary>
-        /// <param name="platformsYPositions"> Platforms' Y positions </param>
-        /// <param name="piecesBehaviours"> Pieces' behaviour components </param>
-        public void SetLevelData(List<float> platformsYPositions, List<IPiece[]> piecesBehaviours)
-        {
-            _platformsYPositions = platformsYPositions;
-            _piecesBehaviours = piecesBehaviours;
         }
     }
 }

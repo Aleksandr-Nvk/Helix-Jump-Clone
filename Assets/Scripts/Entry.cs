@@ -10,7 +10,7 @@ public class Entry : MonoBehaviour
         
     [SerializeField] private LevelSettings _settings;
     
-    [SerializeField] private BallBehaviour _ballBehaviour;
+    [SerializeField] private BallPositionChecker _ballPositionChecker;
     
 #pragma warning restore
 
@@ -20,12 +20,14 @@ public class Entry : MonoBehaviour
     {
         var pieceCreator = new PieceCreator(_settings);
         
-        var levelBuilder = new LevelBuilder(_settings, pieceCreator);
+        var levelModelCreator = new LevelModelCreator(pieceCreator);
+        var levelSpawner = new LevelSpawner(_settings);
+        
+        var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
         
         var gameplayManager = new GameplayManager(levelBuilder);
         gameplayManager.Start();
         
-        _ballBehaviour.SetLevelData(levelBuilder.PlatformsYPositions, levelBuilder.PiecesBehaviours);
-
+        _ballPositionChecker.SetLevelData(levelSpawner.GetLevelData());
     }
 }
