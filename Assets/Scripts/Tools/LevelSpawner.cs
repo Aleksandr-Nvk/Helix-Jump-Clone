@@ -18,9 +18,9 @@ namespace Tools
         
         private readonly List<GameObject> _allPlatformsPieces = new List<GameObject>();
         
-        public LevelSpawner(LevelSettings levelSettings)
+        public LevelSpawner(ReferencesContainer referencesContainer)
         {
-            _settings = levelSettings;
+            _settings = referencesContainer.Resolve<LevelSettings>();
         }
         
         /// <summary>

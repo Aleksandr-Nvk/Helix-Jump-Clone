@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Containers;
 using Interfaces;
+using Tools;
 
 namespace MainGameplay
 {
@@ -10,6 +11,19 @@ namespace MainGameplay
         private List<float> _platformsYPositions = new List<float>();
         
         private List<IPiece[]> _piecesBehaviours = new List<IPiece[]>();
+        
+        private CameraMover _cameraMover;
+
+        /// <summary>
+        /// MonoBehaviour constructor
+        /// </summary>
+        /// <param name="referencesContainer"> ReferencesContainer </param>
+        public void Init(ReferencesContainer referencesContainer)
+        {
+            _platformsYPositions = referencesContainer.Resolve<LevelSpawner>().GetLevelData().PlatformsYPositions;
+            _piecesBehaviours = referencesContainer.Resolve<LevelSpawner>().GetLevelData().PiecesBehaviours;
+            _cameraMover = referencesContainer.Resolve<CameraMover>();
+        }
         
         private void Update()
         {
@@ -22,17 +36,9 @@ namespace MainGameplay
                 
                 _platformsYPositions.Remove(_platformsYPositions[0]);
                 _piecesBehaviours.Remove(_piecesBehaviours[0]);
+                
+                _cameraMover.Move(_platformsYPositions[0]);
             }
-        }
-        
-        /// <summary>
-        /// Sets built level data
-        /// </summary>
-        /// <param name="levelData"> Built level data </param>
-        public void SetLevelData(LevelData levelData)
-        {
-            _platformsYPositions = levelData.PlatformsYPositions;
-            _piecesBehaviours = levelData.PiecesBehaviours;
         }
     }
 }

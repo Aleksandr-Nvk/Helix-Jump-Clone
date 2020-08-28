@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Containers;
 using Settings;
 using Models;
 
@@ -10,9 +11,9 @@ namespace Tools
     {
         private readonly Dictionary<float, PieceType> _inputDictionary = new Dictionary<float, PieceType>();
 
-        public PieceCreator(LevelSettings levelSettings)
+        public PieceCreator(ReferencesContainer referencesContainer)
         {
-            var newDictionary = levelSettings.ProbabilityToPieceType.ToDictionary();
+            var newDictionary = referencesContainer.Resolve<LevelSettings>().ProbabilityToPieceType.ToDictionary();
             
             foreach (var pair in newDictionary)
             {

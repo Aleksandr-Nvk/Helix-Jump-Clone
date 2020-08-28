@@ -1,4 +1,5 @@
 using MainGameplay;
+using Containers;
 
 namespace Managers
 {
@@ -6,11 +7,14 @@ namespace Managers
     {
         private readonly LevelBuilder _levelBuilder;
 
-        public GameplayManager(LevelBuilder levelBuilder)
+        public GameplayManager(ReferencesContainer referencesContainer)
         {
-            _levelBuilder = levelBuilder;
+            _levelBuilder = referencesContainer.Resolve<LevelBuilder>();
         }
 
+        /// <summary>
+        /// Starts the main gameplay
+        /// </summary>
         public void Start()
         {
             _levelBuilder.Build(); // building a level

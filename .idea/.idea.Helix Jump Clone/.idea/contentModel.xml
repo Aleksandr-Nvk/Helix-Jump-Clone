@@ -25,6 +25,7 @@
           <e p="Consts.cs" t="Include" />
           <e p="Containers" t="Include">
             <e p="LevelData.cs" t="Include" />
+            <e p="ReferencesContainer.cs" t="Include" />
           </e>
           <e p="Dictionaries" t="Include">
             <e p="Lists" t="Include">
@@ -41,12 +42,14 @@
           <e p="Dictionaries.cs" t="Include" />
           <e p="Entry.cs" t="Include" />
           <e p="Interfaces" t="Include">
+            <e p="IContainer.cs" t="Include" />
             <e p="IPiece.cs" t="Include" />
           </e>
           <e p="MainGameplay" t="Include">
             <e p="BallBehaviour.cs" t="Include" />
             <e p="BallMovement.cs" t="Include" />
             <e p="BallPositionChecker.cs" t="Include" />
+            <e p="CameraMover.cs" t="Include" />
             <e p="LevelBuilder.cs" t="Include" />
             <e p="PieceBehaviour.cs" t="Include" />
           </e>

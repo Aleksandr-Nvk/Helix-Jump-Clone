@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Containers;
 using Settings;
 using Tools;
 
@@ -12,12 +13,11 @@ namespace MainGameplay
         
         private readonly LevelSpawner _levelSpawner;
         
-        public LevelBuilder(LevelSettings settings, LevelModelCreator levelModelCreator, LevelSpawner levelSpawner)
+        public LevelBuilder(ReferencesContainer referencesContainer)
         {
-            _settings = settings;
-
-            _levelModelCreator = levelModelCreator;
-            _levelSpawner = levelSpawner;
+            _settings = referencesContainer.Resolve<LevelSettings>();
+            _levelModelCreator = referencesContainer.Resolve<LevelModelCreator>();
+            _levelSpawner = referencesContainer.Resolve<LevelSpawner>();
         }
 
         /// <summary>

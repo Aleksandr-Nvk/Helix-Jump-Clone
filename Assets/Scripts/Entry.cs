@@ -1,5 +1,6 @@
 using MainGameplay;
 using UnityEngine;
+using Containers;
 using Managers;
 using Settings;
 using Tools;
@@ -11,23 +12,37 @@ public class Entry : MonoBehaviour
     [SerializeField] private LevelSettings _settings;
     
     [SerializeField] private BallPositionChecker _ballPositionChecker;
-    
-#pragma warning restore
 
-    private FromPieceTypeToProbability _piecesProbabilities;
+    [SerializeField] private GameObject _mainCamera;
+
+#pragma warning restore
+    
+    private readonly ReferencesContainer _container = new ReferencesContainer();
         
     private void Start()
     {
-        var pieceCreator = new PieceCreator(_settings);
+        _container.Add(_settings);
+        _container.Add(_ballPositionChecker);
         
-        var levelModelCreator = new LevelModelCreator(pieceCreator);
-        var levelSpawner = new LevelSpawner(_settings);
+        var pieceCreator = new PieceCreator(_container);
+        _container.Add(pieceCreator);
+
+        var levelModelCreator = new LevelModelCreator(_container);
+        _container.Add(levelModelCreator);
         
-        var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
+        var levelSpawner = new LevelSpawner(_container);
+        _container.Add(levelSpawner);
+
+        var levelBuilder = new LevelBuilder(_container);
+        _container.Add(levelBuilder);
         
-        var gameplayManager = new GameplayManager(levelBuilder);
+        var gameplayManager = new GameplayManager(_container);
+        _container.Add(gameplayManager);
         gameplayManager.Start();
         
-        _ballPositionChecker.SetLevelData(levelSpawner.GetLevelData());
+        var cameraMover = new CameraMover(_settings, _mainCamera);
+        _container.Add(cameraMover);
+        
+        _ballPositionChecker.Init(_container);
     }
 }
