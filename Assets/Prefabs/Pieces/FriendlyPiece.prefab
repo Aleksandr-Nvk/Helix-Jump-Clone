@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1267a9963e8f4fea952cb6417d7bc926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _meshRenderer: {fileID: 7410190531743586704}
   _rigidbody: {fileID: 5540702681438056612}
+  _meshRenderer: {fileID: 7410190531743586704}
   _collider: {fileID: 448741338847872705}
 --- !u!54 &5540702681438056612
 Rigidbody:

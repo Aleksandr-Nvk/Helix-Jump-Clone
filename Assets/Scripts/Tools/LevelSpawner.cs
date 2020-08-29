@@ -17,6 +17,8 @@ namespace Tools
         private List<IPiece[]> _piecesBehaviours = new List<IPiece[]>();
         
         private readonly List<GameObject> _allPlatformsPieces = new List<GameObject>();
+
+        private Vector3 _ballRotation;
         
         public LevelSpawner(ReferencesContainer referencesContainer)
         {
@@ -34,10 +36,20 @@ namespace Tools
 
             var positionStep = _settings.SpawnDistance;
 
+            var _ballIsPlaced = false;
+
             var itemIndex = 0;
             
             foreach (var piecePrefabType in platformPiecesTypes)
             {
+                if (itemIndex >= 0 && itemIndex <= 7 && !_ballIsPlaced) // ball position validator
+                {
+                    if (piecePrefabType != PiecePrefabType.EmptyPrefab)
+                    {
+                        _ballRotation = rotation;
+                        _ballIsPlaced = true;
+                    }
+                }
                 if (piecePrefabType != PiecePrefabType.EmptyPrefab)
                 {
                     var pieceTypeToPrefab = _settings.PieceTypeToPrefab.ToDictionary();
@@ -73,7 +85,8 @@ namespace Tools
             {
                 PiecesBehaviours = _piecesBehaviours,
                 PlatformsYPositions = _platformsYPositions,
-                AllPlatformsPieces = _allPlatformsPieces
+                AllPlatformsPieces = _allPlatformsPieces,
+                BallRotation = _ballRotation
             };
 
             return levelData;

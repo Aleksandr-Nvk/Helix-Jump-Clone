@@ -31,7 +31,7 @@ namespace MainGameplay
             {
                 foreach (var piece in _piecesBehaviours[0])
                 {
-                    piece?.Delete(1f);
+                    piece?.Delete(3f);
                 }
                 
                 _platformsYPositions.Remove(_platformsYPositions[0]);

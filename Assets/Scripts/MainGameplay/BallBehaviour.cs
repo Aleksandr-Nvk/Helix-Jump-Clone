@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Containers;
+using UnityEngine;
 
 namespace MainGameplay
 {
@@ -7,23 +8,23 @@ namespace MainGameplay
     #pragma warning disable 0649
 
         [SerializeField] private Rigidbody _ball;
-        [SerializeField] private Rigidbody _ballParent;
-        
-    #pragma warning restore
 
-        private void Start()
-        {
-            // ball start position validation
-            var parent = _ballParent.gameObject;
-            var ray = new Ray(parent.transform.position, Vector3.down);
-            Physics.Raycast(ray, out var data);
-            
-            // TODO: Check ray length
-        }
+        [SerializeField] private GameObject _ballParent;
+
+    #pragma warning restore
 
         private void OnCollisionEnter(Collision collision)
         {
             Jump();
+        }
+
+        /// <summary>
+        /// MonoBehaviour constructor
+        /// </summary>
+        /// <param name="levelData"> Built level data</param>
+        public void Init(LevelData levelData)
+        {
+            _ballParent.transform.eulerAngles = levelData.BallRotation;
         }
 
         /// <summary>

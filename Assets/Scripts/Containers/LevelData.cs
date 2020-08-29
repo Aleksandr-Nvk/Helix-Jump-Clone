@@ -4,12 +4,14 @@ using Interfaces;
 
 namespace Containers
 {
-    public struct LevelData
+    public class LevelData
     {
         public List<IPiece[]> PiecesBehaviours;
         
         public List<float> PlatformsYPositions;
 
         public List<GameObject> AllPlatformsPieces;
+
+        public Vector3 BallRotation;
     }
 }

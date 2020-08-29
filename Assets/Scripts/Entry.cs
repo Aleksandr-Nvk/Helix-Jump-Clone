@@ -13,6 +13,8 @@ public class Entry : MonoBehaviour
     
     [SerializeField] private BallPositionChecker _ballPositionChecker;
 
+    [SerializeField] private BallBehaviour _ballBehaviour;
+    
     [SerializeField] private GameObject _mainCamera;
 
 #pragma warning restore
@@ -26,6 +28,8 @@ public class Entry : MonoBehaviour
         
         var pieceCreator = new PieceCreator(_container);
         _container.Add(pieceCreator);
+        
+        _container.Add(_ballBehaviour);
 
         var levelModelCreator = new LevelModelCreator(_container);
         _container.Add(levelModelCreator);
@@ -44,5 +48,6 @@ public class Entry : MonoBehaviour
         _container.Add(cameraMover);
         
         _ballPositionChecker.Init(_container);
+        _ballBehaviour.Init(levelSpawner.GetLevelData());
     }
 }
