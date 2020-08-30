@@ -23,30 +23,31 @@ public class Entry : MonoBehaviour
         
     private void Start()
     {
+        // блок создания экземпляров классов, которым нужна уже существующая информация (типа настроек)
+        // либо ссылки на друг друга
+        var pieceCreator = new PieceCreator(_settings);
+        var levelModelCreator = new LevelModelCreator(pieceCreator);
+        var levelSpawner = new LevelSpawner(_settings);
+        var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
+        var cameraMover = new CameraMover(_settings, _mainCamera);
+
+        // добавление их в контейнер
         _container.Add(_settings);
         _container.Add(_ballPositionChecker);
-        
-        var pieceCreator = new PieceCreator(_container);
         _container.Add(pieceCreator);
-        
         _container.Add(_ballBehaviour);
-
-        var levelModelCreator = new LevelModelCreator(_container);
         _container.Add(levelModelCreator);
-        
-        var levelSpawner = new LevelSpawner(_container);
         _container.Add(levelSpawner);
-
-        var levelBuilder = new LevelBuilder(_container);
         _container.Add(levelBuilder);
-        
-        var gameplayManager = new GameplayManager(_container);
-        _container.Add(gameplayManager);
-        gameplayManager.Start();
-        
-        var cameraMover = new CameraMover(_settings, _mainCamera);
         _container.Add(cameraMover);
         
+        // блок для создания экземпляров управляющих классов, которым нужен весь контейнер
+        var gameplayManager = new GameplayManager(_container);
+        _container.Add(gameplayManager);
+        
+        gameplayManager.Start();
+        
+        // TODO: вся инициализация должна происходить ДО старта
         _ballPositionChecker.Init(_container);
         _ballBehaviour.Init(levelSpawner.GetLevelData());
     }

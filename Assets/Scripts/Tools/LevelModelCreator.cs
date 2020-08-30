@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using Containers;
 
 namespace Tools
 {
@@ -8,9 +7,9 @@ namespace Tools
     {
         private readonly PieceCreator _pieceCreator;
 
-        public LevelModelCreator(ReferencesContainer referencesContainer)
+        public LevelModelCreator(PieceCreator pieceCreator)
         {
-            _pieceCreator = referencesContainer.Resolve<PieceCreator>();
+            _pieceCreator = pieceCreator;
         }
 
         /// <summary>

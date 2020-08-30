@@ -13,11 +13,11 @@ namespace MainGameplay
         
         private readonly LevelSpawner _levelSpawner;
         
-        public LevelBuilder(ReferencesContainer referencesContainer)
+        public LevelBuilder(LevelSettings settings, LevelModelCreator levelModelCreator, LevelSpawner levelSpawner)
         {
-            _settings = referencesContainer.Resolve<LevelSettings>();
-            _levelModelCreator = referencesContainer.Resolve<LevelModelCreator>();
-            _levelSpawner = referencesContainer.Resolve<LevelSpawner>();
+            _settings = settings;
+            _levelModelCreator = levelModelCreator;
+            _levelSpawner = levelSpawner;
         }
 
         /// <summary>

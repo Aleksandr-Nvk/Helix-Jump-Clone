@@ -20,9 +20,9 @@ namespace Tools
 
         private Vector3 _ballRotation;
         
-        public LevelSpawner(ReferencesContainer referencesContainer)
+        public LevelSpawner(LevelSettings settings)
         {
-            _settings = referencesContainer.Resolve<LevelSettings>();
+            _settings = settings;
         }
         
         /// <summary>

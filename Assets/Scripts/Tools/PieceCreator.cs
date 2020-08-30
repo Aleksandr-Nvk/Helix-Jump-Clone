@@ -9,11 +9,12 @@ namespace Tools
 {
     public class PieceCreator
     {
+        private readonly ReferencesContainer _referencesContainer;
         private readonly Dictionary<float, PieceType> _inputDictionary = new Dictionary<float, PieceType>();
 
-        public PieceCreator(ReferencesContainer referencesContainer)
+        public PieceCreator(LevelSettings settings)
         {
-            var newDictionary = referencesContainer.Resolve<LevelSettings>().ProbabilityToPieceType.ToDictionary();
+            var newDictionary = settings.ProbabilityToPieceType.ToDictionary();
             
             foreach (var pair in newDictionary)
             {
