@@ -19,15 +19,6 @@ namespace MainGameplay
         }
 
         /// <summary>
-        /// MonoBehaviour constructor
-        /// </summary>
-        /// <param name="levelData"> Built level data</param>
-        public void Init(LevelData levelData)
-        {
-            _ballParent.transform.eulerAngles = levelData.BallRotation;
-        }
-
-        /// <summary>
         /// Makes the ball jump
         /// </summary>
         private void Jump()

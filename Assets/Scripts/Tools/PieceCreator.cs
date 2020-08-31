@@ -64,22 +64,23 @@ namespace Tools
         /// <returns> Random piece type </returns>
         private PieceType GetRandomType()
         {
-            PieceType result = default;
-
             var probabilities = _inputDictionary.Select(pair => pair.Key).ToList();
 
             probabilities.Sort();
             probabilities.Reverse();
 
-            var intervals = new List<float> { 0f };
+            var intervals = new List<float> { 0f }; // intervals with the start of interval coordinates (zero)
 
             for (var i = 0; i < probabilities.Count; i++)
             {
-                intervals.Add(intervals[i] + probabilities[i]); // intervals with probabilities checkpoints
+                var intervalCheckPoint = intervals[i] + probabilities[i];
+                intervals.Add(intervalCheckPoint); // intervals with probabilities checkpoints
             }
 
             var random = Random.value;
             
+            var result = PieceType.Empty;
+
             for (var i = 0; i < probabilities.Count; i++)
             {
                 if (random >= intervals[i] && random < intervals[i + 1]) // iterating and checking the similarities

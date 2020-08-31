@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using Containers;
 using UnityEngine;
 
 namespace Tools
@@ -17,40 +17,41 @@ namespace Tools
         /// </summary>
         /// <param name="platformIndex"> Current platform index </param>
         /// <returns> List with random piece prefab types </returns>
-        public List<PiecePrefabType> CreatePiecePrefabTypesList(int platformIndex, bool deleteRandom = true)
+        public Platform<PiecePrefabType> CreatePlatformModel(int platformIndex)
         {
-            var internalList = new List<PiecePrefabType>();
+            var internalPlatform = new Platform<PiecePrefabType>();
             
-            for (var j = 0; j < Consts.PiecesCount; j++)
+            for (var i = 0; i < Consts.PiecesCount; i++)
             {
                 var prefabType = platformIndex == 0
                     ? _pieceCreator.CreateFriendly().Type
                     : _pieceCreator.CreateRandom().Type;
 
-                internalList.Add(prefabType);
+                internalPlatform.Pieces[i] = prefabType;
             }
 
-            if (deleteRandom)
-                DeleteRandomPiecePrefabTypes(internalList);
+            DeleteRandomPiecePrefabTypes(internalPlatform, platformIndex);
             
-            return internalList;
+            return internalPlatform;
         }
-        
-        // TODO: инкапсулировала логику удаления кусочков в класс и выделила ее как настройку метода Create,
-        // т.к. решила, что пользователю данного класса приходится делать лишнее действие (вовремя использовать 2ой метод,
-        // использовать методы в правильном порядке), что может привести к ошибке
+
         /// <summary>
         /// Replaces 1-2 random piece prefab types from the list with empty type
         /// </summary>
         /// <param name="platformPiecesTypes"> List to modify </param>
-        private void DeleteRandomPiecePrefabTypes(List<PiecePrefabType> platformPiecesTypes)
+        /// <param name="platformIndex"> Current platform index </param>
+        private void DeleteRandomPiecePrefabTypes(Platform<PiecePrefabType> platformPiecesTypes, int platformIndex)
         {
             var emptyPiecesCount = Random.Range(1, 3);
 
+            var lowerBound = platformIndex == 0
+                ? 1
+                : 0;
+            
             for (var k = 0; k < emptyPiecesCount; k++)
             {
-                var randomItem = Random.Range(0, platformPiecesTypes.Count);
-                platformPiecesTypes[randomItem] = PiecePrefabType.EmptyPrefab;
+                var randomItem = Random.Range(lowerBound, platformPiecesTypes.Pieces.Length);
+                platformPiecesTypes.Pieces[randomItem] = PiecePrefabType.EmptyPrefab;
             }
         }
     }

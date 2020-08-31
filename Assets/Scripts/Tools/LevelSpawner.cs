@@ -14,11 +14,9 @@ namespace Tools
 
         private readonly Vector3 _rotationStep = new Vector3(0f, Consts.PieceAngle, 0f);
 
-        private List<IPiece[]> _piecesBehaviours = new List<IPiece[]>();
+        private List<Platform<IPiece>> _piecesBehaviours = new List<Platform<IPiece>>();
         
-        private readonly List<GameObject> _allPlatformsPieces = new List<GameObject>();
-
-        private Vector3 _ballRotation;
+        private readonly List<Platform<GameObject>> _allPlatformsPieces = new List<Platform<GameObject>>();
         
         public LevelSpawner(LevelSettings settings)
         {
@@ -29,47 +27,41 @@ namespace Tools
         /// Instantiates prefabs depending on each piece prefab type from the list
         /// </summary>
         /// <param name="platformPiecesTypes"> List to instantiate prefabs from </param>
-        public void InstantiatePiecesFromTypes(List<PiecePrefabType> platformPiecesTypes)
+        public void InstantiatePiecesFromTypes(List<Platform<PiecePrefabType>> platformPiecesTypes)
         {
             var position = Vector3.zero;
             var rotation = Vector3.zero;
 
             var positionStep = _settings.SpawnDistance;
 
-            var _ballIsPlaced = false;
-
-            var itemIndex = 0;
-            
-            foreach (var piecePrefabType in platformPiecesTypes)
+            for (var i = 0; i < _settings.PlatformsCount; i++)
             {
-                if (itemIndex >= 0 && itemIndex <= 7 && !_ballIsPlaced) // ball position validator
-                {
-                    if (piecePrefabType != PiecePrefabType.EmptyPrefab)
-                    {
-                        _ballRotation = rotation;
-                        _ballIsPlaced = true;
-                    }
-                }
-                if (piecePrefabType != PiecePrefabType.EmptyPrefab)
-                {
-                    var pieceTypeToPrefab = _settings.PieceTypeToPrefab.ToDictionary();
-                    var piece = Object.Instantiate(pieceTypeToPrefab[piecePrefabType], position, Quaternion.Euler(rotation));
-                    _allPlatformsPieces.Add(piece);
-                }
-                else
-                {
-                    _allPlatformsPieces.Add(null);
-                }
-                
-                itemIndex++;
+                _allPlatformsPieces.Add(new Platform<GameObject>());
+            }
 
-                if (itemIndex % Consts.PiecesCount == 0)
+            for (var i = 0; i < platformPiecesTypes.Count; i++)
+            {
+                for (var j = 0; j < platformPiecesTypes[i].Pieces.Length; j++)
                 {
-                    _platformsYPositions.Add(position.y);
-                    position -= positionStep;
+                    if (platformPiecesTypes[i].Pieces[j] != PiecePrefabType.EmptyPrefab)
+                    {
+                        var pieceTypeToPrefab = _settings.PieceTypeToPrefab.ToDictionary();
+                        var pieceToSpawn = pieceTypeToPrefab[platformPiecesTypes[i].Pieces[j]];
+                        var pieceInstance = Object.Instantiate(pieceToSpawn, position, Quaternion.Euler(rotation));
+                        
+                        _allPlatformsPieces[i].Pieces[j] = pieceInstance;
+                    }
+                    else
+                    {
+                        _allPlatformsPieces[i].Pieces[j] = null;
+                    }
+
+                    rotation += _rotationStep;
                 }
-                
-                rotation += _rotationStep;
+
+                _platformsYPositions.Add(position.y);
+
+                position -= positionStep;
             }
 
             GetPiecesBehaviours(_allPlatformsPieces);
@@ -86,7 +78,6 @@ namespace Tools
                 PiecesBehaviours = _piecesBehaviours,
                 PlatformsYPositions = _platformsYPositions,
                 AllPlatformsPieces = _allPlatformsPieces,
-                BallRotation = _ballRotation
             };
 
             return levelData;
@@ -96,28 +87,22 @@ namespace Tools
         /// Gets behaviour script type from each piece
         /// </summary>
         /// <param name="spawnedPieces"> Pieces to get behaviours from </param>
-        private void GetPiecesBehaviours(List<GameObject> spawnedPieces)
+        private void GetPiecesBehaviours(List<Platform<GameObject>> spawnedPieces)
         {
-            _piecesBehaviours = new List<IPiece[]>();
+            _piecesBehaviours = new List<Platform<IPiece>>();
 
-            for (var i = 0; i < _settings.PlatformsCount; i++)
+            for (var i = 0; i < spawnedPieces.Count; i++)
             {
-                _piecesBehaviours.Add(new IPiece[Consts.PiecesCount]); // creating empty pieces behaviours
-            }
-            
-            var internalPiecesList = spawnedPieces;
+                var platformBehaviours = new Platform<IPiece>();
 
-            foreach (var behaviour in _piecesBehaviours)
-            {
-                for (var i = 0; i < behaviour.Length; i++)
+                for (var j = 0; j < platformBehaviours.Pieces.Length; j++)
                 {
-                    if (internalPiecesList[0] != null)
-                        behaviour[i] = internalPiecesList[0].GetComponent<IPiece>();
+                    if (spawnedPieces[i].Pieces[j] != null)
+                        platformBehaviours.Pieces[j] = spawnedPieces[i].Pieces[j].GetComponent<IPiece>();
                     else
-                        behaviour[i] = null;
-
-                    internalPiecesList.Remove(internalPiecesList[0]);
+                        platformBehaviours.Pieces[j] = null;
                 }
+                _piecesBehaviours.Add(platformBehaviours);
             }
         }
     }

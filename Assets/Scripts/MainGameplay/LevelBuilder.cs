@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Containers;
 using Settings;
 using Tools;
 
@@ -24,11 +25,11 @@ namespace MainGameplay
         /// </summary>
         public void Build()
         {
-            var allPlatformsPiecesTypes = new List<PiecePrefabType>();
+            var allPlatformsPiecesTypes = new List<Platform<PiecePrefabType>>();
             for (var i = 0; i < _settings.PlatformsCount; i++) // spawning platforms
             {
-                var platformPiecesTypes = _levelModelCreator.CreatePiecePrefabTypesList(i);
-                allPlatformsPiecesTypes.AddRange(platformPiecesTypes);
+                var platformPiecesTypes = _levelModelCreator.CreatePlatformModel(i);
+                allPlatformsPiecesTypes.Add(platformPiecesTypes);
             }
             
             _levelSpawner.InstantiatePiecesFromTypes(allPlatformsPiecesTypes);

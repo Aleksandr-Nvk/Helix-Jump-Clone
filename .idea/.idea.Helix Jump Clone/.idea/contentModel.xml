@@ -25,6 +25,7 @@
           <e p="Consts.cs" t="Include" />
           <e p="Containers" t="Include">
             <e p="LevelData.cs" t="Include" />
+            <e p="Platform.cs" t="Include" />
             <e p="ReferencesContainer.cs" t="Include" />
           </e>
           <e p="Dictionaries" t="Include">

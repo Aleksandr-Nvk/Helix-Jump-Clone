@@ -6,12 +6,10 @@ namespace Containers
 {
     public class LevelData
     {
-        public List<IPiece[]> PiecesBehaviours;
+        public List<Platform<IPiece>> PiecesBehaviours;
         
         public List<float> PlatformsYPositions;
 
-        public List<GameObject> AllPlatformsPieces;
-
-        public Vector3 BallRotation;
+        public List<Platform<GameObject>> AllPlatformsPieces;
     }
 }
