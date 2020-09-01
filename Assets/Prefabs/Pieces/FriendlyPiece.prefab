@@ -142,6 +142,7 @@ MonoBehaviour:
   _rigidbody: {fileID: 5540702681438056612}
   _meshRenderer: {fileID: 7410190531743586704}
   _collider: {fileID: 448741338847872705}
+  _distortionForce: 2
 --- !u!54 &5540702681438056612
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -25,7 +25,7 @@ public class Entry : MonoBehaviour
     {
         // creating classes instances which require an existing information or references to each others
         var pieceCreator = new PieceCreator(_settings);
-        var levelModelCreator = new LevelModelCreator(pieceCreator);
+        var levelModelCreator = new LevelModelCreator(pieceCreator, _settings);
         var levelSpawner = new LevelSpawner(_settings);
         var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
         var cameraMover = new CameraMover(_settings, _mainCamera);

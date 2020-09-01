@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Containers;
 using Interfaces;
@@ -27,17 +28,21 @@ namespace MainGameplay
         
         private void Update()
         {
-            if (transform.position.y < _platformsYPositions[0])
+            if (transform.position.y < _platformsYPositions.First())
             {
-                foreach (var piece in _piecesBehaviours[0].Pieces)
+                
+                foreach (var piece in _piecesBehaviours.First().Pieces)
                 {
                     piece?.Delete(3f);
                 }
                 
-                _platformsYPositions.Remove(_platformsYPositions[0]);
-                _piecesBehaviours.Remove(_piecesBehaviours[0]);
+                _platformsYPositions.Remove(_platformsYPositions.First());
+                _piecesBehaviours.Remove(_piecesBehaviours.First());
                 
-                _cameraMover.Move(_platformsYPositions[0]);
+                _cameraMover.Move(_platformsYPositions.First());
+
+                if ( _platformsYPositions.Count == 1) // check if only one platform left
+                    Debug.Log("Won");
             }
         }
     }

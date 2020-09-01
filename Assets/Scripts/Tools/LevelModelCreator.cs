@@ -1,4 +1,5 @@
 using Containers;
+using Settings;
 using UnityEngine;
 
 namespace Tools
@@ -6,10 +7,12 @@ namespace Tools
     public class LevelModelCreator
     {
         private readonly PieceCreator _pieceCreator;
+        private readonly LevelSettings _levelSettings;
 
-        public LevelModelCreator(PieceCreator pieceCreator)
+        public LevelModelCreator(PieceCreator pieceCreator, LevelSettings levelSettings)
         {
             _pieceCreator = pieceCreator;
+            _levelSettings = levelSettings;
         }
 
         /// <summary>
@@ -44,14 +47,17 @@ namespace Tools
         {
             var emptyPiecesCount = Random.Range(1, 3);
 
-            var lowerBound = platformIndex == 0
-                ? 1
-                : 0;
-            
-            for (var k = 0; k < emptyPiecesCount; k++)
+            if (platformIndex != _levelSettings.PlatformsCount - 1)
             {
-                var randomItem = Random.Range(lowerBound, platformPiecesTypes.Pieces.Length);
-                platformPiecesTypes.Pieces[randomItem] = PiecePrefabType.EmptyPrefab;
+                var lowerBound = platformIndex == 0
+                    ? 1
+                    : 0;
+            
+                for (var k = 0; k < emptyPiecesCount; k++)
+                {
+                    var randomItem = Random.Range(lowerBound, platformPiecesTypes.Pieces.Length);
+                    platformPiecesTypes.Pieces[randomItem] = PiecePrefabType.EmptyPrefab;
+                }
             }
         }
     }
