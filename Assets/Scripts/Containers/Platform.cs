@@ -1,7 +1,8 @@
 namespace Containers
 {
+    // platform entity 
     public class Platform<T>
     {
-        public T[] Pieces = new T[Consts.PiecesCount];
+        public readonly T[] Pieces = new T[Consts.PiecesCount];
     }
 }

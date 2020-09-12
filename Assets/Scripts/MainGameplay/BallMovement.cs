@@ -2,6 +2,7 @@
 
 namespace MainGameplay
 {
+    // manages ball movement
     public class BallMovement : MonoBehaviour
     {
     #pragma warning disable 0649

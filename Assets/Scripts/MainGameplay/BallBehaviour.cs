@@ -1,8 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
+using System;
 
 namespace MainGameplay
 {
+    // manages main ball behaviour
     public class BallBehaviour : MonoBehaviour
     {
     #pragma warning disable 0649

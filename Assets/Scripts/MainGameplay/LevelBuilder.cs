@@ -5,15 +5,16 @@ using Tools;
 
 namespace MainGameplay
 {
+    // manages level building process
     public class LevelBuilder
     {
-        private readonly LevelSettings _settings;
+        private readonly GameplaySettings _settings;
 
         private readonly LevelModelCreator _levelModelCreator;
 
         private readonly LevelSpawner _levelSpawner;
 
-        public LevelBuilder(LevelSettings settings, LevelModelCreator levelModelCreator, LevelSpawner levelSpawner)
+        public LevelBuilder(GameplaySettings settings, LevelModelCreator levelModelCreator, LevelSpawner levelSpawner)
         {
             _settings = settings;
             _levelModelCreator = levelModelCreator;

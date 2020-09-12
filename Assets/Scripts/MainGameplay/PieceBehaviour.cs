@@ -4,13 +4,12 @@ using Interfaces;
 
 namespace MainGameplay
 {
+    // manages piece behaviour    
     public class PieceBehaviour : MonoBehaviour, IPiece
     {
     #pragma warning disable 0649
 
         [SerializeField] private Rigidbody _rigidbody;
-
-        [SerializeField] private MeshRenderer _meshRenderer;
         
         [SerializeField] private MeshCollider _collider;
 
@@ -25,7 +24,6 @@ namespace MainGameplay
         public void Delete(float time)
         {
             Distort();
-            //_meshRenderer.material.DOFade(0f, 1f);
             Destroy(gameObject, time);
         }
 

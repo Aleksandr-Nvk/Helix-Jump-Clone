@@ -1,15 +1,14 @@
 using UnityEngine;
 using System;
 
-namespace Dictionaries.Lists
+namespace Dictionaries
 {
+    // joins piece prefab and its model data
     [Serializable]
     public class PieceTypeToPrefab
     {
         public GameObject FriendlyPrefab;
         public GameObject EnemyPrefab;
-        public GameObject FlyingPrefab;
-        public GameObject EmptyPrefab;
 
         public GameObject this[PieceType type]
         {
@@ -20,10 +19,8 @@ namespace Dictionaries.Lists
                         return EnemyPrefab;
                     case PieceType.Friendly:
                         return FriendlyPrefab;
-                    case PieceType.Flying:
-                        return FlyingPrefab;
                     case PieceType.Empty:
-                        return EmptyPrefab;
+                        return null;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(type), type, null);
                 }

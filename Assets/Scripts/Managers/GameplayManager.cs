@@ -1,21 +1,26 @@
 using MainGameplay;
-using Containers;
+using Tools;
 
 namespace Managers
 {
+    // main gameplay manager
     public class GameplayManager
     {
         private readonly LevelBuilder _levelBuilder;
 
+        private readonly LevelSpawner _levelSpawner;
+
         private readonly BallPositionChecker _ballPositionChecker;
 
-        private readonly ReferencesContainer _referencesContainer;
-
-        public GameplayManager(ReferencesContainer referencesContainer)
+        private readonly CameraMover _cameraMover;
+        
+        public GameplayManager(LevelBuilder levelBuilder, LevelSpawner levelSpawner,
+            BallPositionChecker ballPositionChecker, CameraMover cameraMover)
         {
-            _referencesContainer = referencesContainer;
-            _levelBuilder = referencesContainer.Resolve<LevelBuilder>();
-            _ballPositionChecker = referencesContainer.Resolve<BallPositionChecker>();
+            _levelBuilder = levelBuilder;
+            _levelSpawner = levelSpawner;
+            _ballPositionChecker = ballPositionChecker;
+            _cameraMover = cameraMover;
         }
 
         /// <summary>
@@ -24,7 +29,7 @@ namespace Managers
         public void Start()
         {
             _levelBuilder.Build(); // building a level
-            _ballPositionChecker.Init(_referencesContainer);
+            _ballPositionChecker.Init(_levelSpawner, _cameraMover);
         }
     }
 }

@@ -6,9 +6,10 @@ using Settings;
 
 namespace Tools
 {
+    // manages editor level spawner
     public class LevelSpawner
     {
-        private readonly LevelSettings _settings;
+        private readonly GameplaySettings _settings;
 
         private readonly List<float> _platformsYPositions = new List<float>();
 
@@ -18,7 +19,7 @@ namespace Tools
 
         private readonly List<Platform<GameObject>> _allPlatformsPieces = new List<Platform<GameObject>>();
 
-        public LevelSpawner(LevelSettings settings)
+        public LevelSpawner(GameplaySettings settings)
         {
             _settings = settings;
         }

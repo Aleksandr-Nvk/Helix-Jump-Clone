@@ -4,6 +4,7 @@ using Interfaces;
 
 namespace Containers
 {
+    // represents newly built level data
     public class LevelData
     {
         public List<Platform<IPiece>> PiecesBehaviours;

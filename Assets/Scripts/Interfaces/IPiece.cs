@@ -1,5 +1,6 @@
 namespace Interfaces
 {
+    // represents common piece behaviour data
     public interface IPiece
     {
         /// <summary>

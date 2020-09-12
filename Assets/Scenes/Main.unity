@@ -285,22 +285,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _platformsCount: 10
   _spawnDistance: {x: 0, y: 1, z: 0}
-  _startPlatform: {fileID: 5319528565776352958, guid: 348de1f5693e943198b2aab2dedb0bc7,
-    type: 3}
-  _probabilityToPieceType:
-    _list:
-    - Key: 0.7
-      Value: 1
-    - Key: 0.3
-      Value: 0
+  _enemyPieceSpawnProbability: 0.5
   _pieceTypeToPrefab:
-    _list:
-    - Key: 1
-      Value: {fileID: 2466409367248160891, guid: 68d7384209ef647cd83d8d3c1ee3b089,
-        type: 3}
-    - Key: 0
-      Value: {fileID: 6503339116306158541, guid: f8af751e80f314c62b4a42202530d920,
-        type: 3}
+    FriendlyPrefab: {fileID: 2466409367248160891, guid: 68d7384209ef647cd83d8d3c1ee3b089,
+      type: 3}
+    EnemyPrefab: {fileID: 6503339116306158541, guid: f8af751e80f314c62b4a42202530d920,
+      type: 3}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,7 +497,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _settings: {fileID: 660504363}
   _ballPositionChecker: {fileID: 8238989214909064079}
-  _ballBehaviour: {fileID: 7680233496331103896}
   _mainCamera: {fileID: 522639271}
 --- !u!4 &1526092876
 Transform:

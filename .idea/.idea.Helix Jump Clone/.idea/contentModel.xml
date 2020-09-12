@@ -26,24 +26,12 @@
           <e p="Containers" t="Include">
             <e p="LevelData.cs" t="Include" />
             <e p="Platform.cs" t="Include" />
-            <e p="ReferencesContainer.cs" t="Include" />
           </e>
           <e p="Dictionaries" t="Include">
-            <e p="Lists" t="Include">
-              <e p="BasePairList.cs" t="Include" />
-              <e p="PieceTypeToPrefab.cs" t="Include" />
-              <e p="ProbabilityToPieceType.cs" t="Include" />
-            </e>
-            <e p="Pairs" t="Include">
-              <e p="BasePair.cs" t="Include" />
-              <e p="PieceTypeToPrefabPair.cs" t="Include" />
-              <e p="ProbabilityToPieceTypePair.cs" t="Include" />
-            </e>
+            <e p="PieceTypeToPrefab.cs" t="Include" />
           </e>
-          <e p="Dictionaries.cs" t="Include" />
           <e p="Entry.cs" t="Include" />
           <e p="Interfaces" t="Include">
-            <e p="IContainer.cs" t="Include" />
             <e p="IPiece.cs" t="Include" />
           </e>
           <e p="MainGameplay" t="Include">
@@ -61,7 +49,7 @@
             <e p="PieceModel.cs" t="Include" />
           </e>
           <e p="Settings" t="Include">
-            <e p="LevelSettings.cs" t="Include" />
+            <e p="GameplaySettings.cs" t="Include" />
           </e>
           <e p="Tools" t="Include">
             <e p="LevelModelCreator.cs" t="Include" />

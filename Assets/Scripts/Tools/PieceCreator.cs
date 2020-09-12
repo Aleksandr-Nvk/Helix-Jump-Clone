@@ -1,20 +1,17 @@
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using Containers;
 using Settings;
 using Models;
 
 namespace Tools
 {
+    // manages pieces generation
     public class PieceCreator
     {
-        private readonly ReferencesContainer _referencesContainer;
-        private readonly Dictionary<float, PieceType> _inputDictionary;
+        private readonly GameplaySettings _gameplaySettings;
 
-        public PieceCreator(LevelSettings settings)
+        public PieceCreator(GameplaySettings settings)
         {
-            _inputDictionary = settings.ProbabilityToPieceType.ToDictionary();
+            _gameplaySettings = settings;
         }
 
         /// <summary>
@@ -45,44 +42,14 @@ namespace Tools
         }
 
         /// <summary>
-        /// Creates new Flying Piece Model
-        /// </summary>
-        /// <returns> Flying Piece Model </returns>
-        public PieceModel CreateFlying()
-        {
-            return new PieceModel(PieceType.Flying);
-        }
-
-        /// <summary>
         /// Chooses random Piece Type depending on randomness probabilities
         /// </summary>
         /// <returns> Random piece type </returns>
         private PieceType GetRandomType()
         {
-            var probabilities = _inputDictionary.Select(pair => pair.Key).ToList();
+            var newValue = Random.value;
 
-            probabilities.Sort();
-            probabilities.Reverse();
-
-            var intervals = new List<float> { 0f }; // intervals with the start of interval coordinates (zero)
-
-            for (var i = 0; i < probabilities.Count; i++)
-            {
-                var intervalCheckPoint = intervals[i] + probabilities[i];
-                intervals.Add(intervalCheckPoint); // intervals with probabilities checkpoints
-            }
-
-            var random = Random.value;
-
-            var result = PieceType.Empty;
-
-            for (var i = 0; i < probabilities.Count; i++)
-            {
-                if (random >= intervals[i] && random < intervals[i + 1]) // iterating and checking the similarities
-                    result = _inputDictionary[probabilities[i]];
-            }
-
-            return result;
+            return newValue <= _gameplaySettings.EnemyPieceSpawnProbability ? PieceType.Enemy : PieceType.Friendly;
         }
     }
 }

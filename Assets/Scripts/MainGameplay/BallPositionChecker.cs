@@ -7,6 +7,7 @@ using Tools;
 
 namespace MainGameplay
 {
+    // manages ball position triggers
     public class BallPositionChecker : MonoBehaviour
     {
         private List<float> _platformsYPositions = new List<float>();
@@ -18,19 +19,19 @@ namespace MainGameplay
         /// <summary>
         /// MonoBehaviour constructor
         /// </summary>
-        /// <param name="referencesContainer"> References container </param>
-        public void Init(ReferencesContainer referencesContainer)
+        /// <param name="levelSpawner"> Level spawner </param>
+        /// <param name="cameraMover"> Camera mover </param>
+        public void Init(LevelSpawner levelSpawner, CameraMover cameraMover)
         {
-            _platformsYPositions = referencesContainer.Resolve<LevelSpawner>().GetLevelData().PlatformsYPositions;
-            _piecesBehaviours = referencesContainer.Resolve<LevelSpawner>().GetLevelData().PiecesBehaviours;
-            _cameraMover = referencesContainer.Resolve<CameraMover>();
+            _platformsYPositions = levelSpawner.GetLevelData().PlatformsYPositions;
+            _piecesBehaviours = levelSpawner.GetLevelData().PiecesBehaviours;
+            _cameraMover = cameraMover;
         }
         
         private void Update()
         {
             if (transform.position.y < _platformsYPositions.First())
             {
-                
                 foreach (var piece in _piecesBehaviours.First().Pieces)
                 {
                     piece?.Delete(3f);

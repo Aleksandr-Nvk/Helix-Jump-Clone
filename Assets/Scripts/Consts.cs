@@ -1,3 +1,4 @@
+// contains all project constants
 public static class Consts
 {
     public const float PieceAngle = 45f;

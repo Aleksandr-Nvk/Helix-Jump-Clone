@@ -1,18 +1,20 @@
+using UnityEngine;
 using Containers;
 using Settings;
-using UnityEngine;
 
 namespace Tools
 {
+    // manages level model
     public class LevelModelCreator
     {
         private readonly PieceCreator _pieceCreator;
-        private readonly LevelSettings _levelSettings;
+        
+        private readonly GameplaySettings _gameplaySettings;
 
-        public LevelModelCreator(PieceCreator pieceCreator, LevelSettings levelSettings)
+        public LevelModelCreator(PieceCreator pieceCreator, GameplaySettings gameplaySettings)
         {
             _pieceCreator = pieceCreator;
-            _levelSettings = levelSettings;
+            _gameplaySettings = gameplaySettings;
         }
 
         /// <summary>
@@ -47,7 +49,7 @@ namespace Tools
         {
             var emptyPiecesCount = Random.Range(1, 3);
 
-            if (platformIndex != _levelSettings.PlatformsCount - 1)
+            if (platformIndex != _gameplaySettings.PlatformsCount - 1)
             {
                 var lowerBound = platformIndex == 0
                     ? 1
