@@ -10,18 +10,13 @@ namespace Tools
     public class PieceCreator
     {
         private readonly ReferencesContainer _referencesContainer;
-        private readonly Dictionary<float, PieceType> _inputDictionary = new Dictionary<float, PieceType>();
+        private readonly Dictionary<float, PieceType> _inputDictionary;
 
         public PieceCreator(LevelSettings settings)
         {
-            var newDictionary = settings.ProbabilityToPieceType.ToDictionary();
-            
-            foreach (var pair in newDictionary)
-            {
-                _inputDictionary.Add(pair.Key, pair.Value);
-            }
+            _inputDictionary = settings.ProbabilityToPieceType.ToDictionary();
         }
-        
+
         /// <summary>
         /// Creates new Piece Model from random Piece Type
         /// </summary>
@@ -78,7 +73,7 @@ namespace Tools
             }
 
             var random = Random.value;
-            
+
             var result = PieceType.Empty;
 
             for (var i = 0; i < probabilities.Count; i++)
@@ -86,7 +81,7 @@ namespace Tools
                 if (random >= intervals[i] && random < intervals[i + 1]) // iterating and checking the similarities
                     result = _inputDictionary[probabilities[i]];
             }
-            
+
             return result;
         }
     }

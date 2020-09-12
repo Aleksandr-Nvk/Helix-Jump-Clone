@@ -20,10 +20,10 @@ namespace Tools
         /// </summary>
         /// <param name="platformIndex"> Current platform index </param>
         /// <returns> List with random piece prefab types </returns>
-        public Platform<PiecePrefabType> CreatePlatformModel(int platformIndex)
+        public Platform<PieceType> CreatePlatformModel(int platformIndex)
         {
-            var internalPlatform = new Platform<PiecePrefabType>();
-            
+            var internalPlatform = new Platform<PieceType>();
+
             for (var i = 0; i < Consts.PiecesCount; i++)
             {
                 var prefabType = platformIndex == 0
@@ -34,7 +34,7 @@ namespace Tools
             }
 
             DeleteRandomPiecePrefabTypes(internalPlatform, platformIndex);
-            
+
             return internalPlatform;
         }
 
@@ -43,7 +43,7 @@ namespace Tools
         /// </summary>
         /// <param name="platformPiecesTypes"> List to modify </param>
         /// <param name="platformIndex"> Current platform index </param>
-        private void DeleteRandomPiecePrefabTypes(Platform<PiecePrefabType> platformPiecesTypes, int platformIndex)
+        private void DeleteRandomPiecePrefabTypes(Platform<PieceType> platformPiecesTypes, int platformIndex)
         {
             var emptyPiecesCount = Random.Range(1, 3);
 
@@ -52,11 +52,11 @@ namespace Tools
                 var lowerBound = platformIndex == 0
                     ? 1
                     : 0;
-            
+
                 for (var k = 0; k < emptyPiecesCount; k++)
                 {
                     var randomItem = Random.Range(lowerBound, platformPiecesTypes.Pieces.Length);
-                    platformPiecesTypes.Pieces[randomItem] = PiecePrefabType.EmptyPrefab;
+                    platformPiecesTypes.Pieces[randomItem] = PieceType.Empty;
                 }
             }
         }

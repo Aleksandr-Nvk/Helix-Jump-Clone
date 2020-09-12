@@ -15,19 +15,19 @@ namespace Tools
         private readonly Vector3 _rotationStep = new Vector3(0f, Consts.PieceAngle, 0f);
 
         private List<Platform<IPiece>> _piecesBehaviours = new List<Platform<IPiece>>();
-        
+
         private readonly List<Platform<GameObject>> _allPlatformsPieces = new List<Platform<GameObject>>();
-        
+
         public LevelSpawner(LevelSettings settings)
         {
             _settings = settings;
         }
-        
+
         /// <summary>
         /// Instantiates prefabs depending on each piece prefab type from the list
         /// </summary>
         /// <param name="platformPiecesTypes"> List to instantiate prefabs from </param>
-        public void InstantiatePiecesFromTypes(List<Platform<PiecePrefabType>> platformPiecesTypes)
+        public void InstantiatePiecesFromTypes(List<Platform<PieceType>> platformPiecesTypes)
         {
             var position = Vector3.zero;
             var rotation = Vector3.zero;
@@ -43,12 +43,11 @@ namespace Tools
             {
                 for (var j = 0; j < platformPiecesTypes[i].Pieces.Length; j++)
                 {
-                    if (platformPiecesTypes[i].Pieces[j] != PiecePrefabType.EmptyPrefab)
+                    if (platformPiecesTypes[i].Pieces[j] != PieceType.Empty)
                     {
-                        var pieceTypeToPrefab = _settings.PieceTypeToPrefab.ToDictionary();
-                        var pieceToSpawn = pieceTypeToPrefab[platformPiecesTypes[i].Pieces[j]];
+                        var pieceToSpawn = _settings.PieceTypeToPrefab[platformPiecesTypes[i].Pieces[j]];
                         var pieceInstance = Object.Instantiate(pieceToSpawn, position, Quaternion.Euler(rotation));
-                        
+
                         _allPlatformsPieces[i].Pieces[j] = pieceInstance;
                     }
                     else
@@ -82,7 +81,7 @@ namespace Tools
 
             return levelData;
         }
-        
+
         /// <summary>
         /// Gets behaviour script type from each piece
         /// </summary>
