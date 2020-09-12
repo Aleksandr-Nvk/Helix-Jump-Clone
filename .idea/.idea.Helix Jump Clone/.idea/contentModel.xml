@@ -33,6 +33,7 @@
           <e p="Entry.cs" t="Include" />
           <e p="Interfaces" t="Include">
             <e p="IPiece.cs" t="Include" />
+            <e p="IView.cs" t="Include" />
           </e>
           <e p="MainGameplay" t="Include">
             <e p="BallBehaviour.cs" t="Include" />
@@ -47,6 +48,9 @@
           </e>
           <e p="Models" t="Include">
             <e p="PieceModel.cs" t="Include" />
+            <e p="UI" t="Include">
+              <e p="PauseViewModel.cs" t="Include" />
+            </e>
           </e>
           <e p="Settings" t="Include">
             <e p="GameplaySettings.cs" t="Include" />
@@ -57,6 +61,9 @@
             <e p="PieceCreator.cs" t="Include" />
           </e>
           <e p="Types.cs" t="Include" />
+          <e p="UIBehaviours" t="Include">
+            <e p="PauseView.cs" t="Include" />
+          </e>
         </e>
         <e p="TextMesh Pro" t="Include">
           <e p="Fonts" t="Include">
