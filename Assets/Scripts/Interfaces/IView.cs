@@ -1,12 +1,11 @@
-using UnityEngine;
-using UnityEngine.Events;
-
 namespace Interfaces
 {
     public interface IView
     {
-        void Show(GameObject gameObject);
+        void Init();
         
-        void Hide(GameObject gameObject);
+        void Show();
+        
+        void Hide();
     }
 }

@@ -631,6 +631,7 @@ MonoBehaviour:
   _settings: {fileID: 660504363}
   _ballPositionChecker: {fileID: 8238989214909064079}
   _mainCamera: {fileID: 522639271}
+  _pauseView: {fileID: 8427057008876677552}
 --- !u!4 &1526092876
 Transform:
   m_ObjectHideFlags: 0
@@ -2387,7 +2388,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 180, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_SizeDelta: {x: 200, y: -275.0802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8427057006959769673
 MonoBehaviour:
@@ -2612,7 +2613,7 @@ RectTransform:
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -180, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_SizeDelta: {x: 200, y: -275.0802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8427057007241580859
 MonoBehaviour:
@@ -2753,7 +2754,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 200, y: 0}
+  m_SizeDelta: {x: 200, y: -275.0802}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8427057007834145663
 MonoBehaviour:
@@ -2846,7 +2847,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &8427057008876677552
 MonoBehaviour:
   m_ObjectHideFlags: 0

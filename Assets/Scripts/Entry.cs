@@ -1,8 +1,10 @@
 using MainGameplay;
 using UnityEngine;
 using Managers;
+using Models.UI;
 using Settings;
 using Tools;
+using UIBehaviours;
 
 // main composition root
 public class Entry : MonoBehaviour
@@ -14,6 +16,10 @@ public class Entry : MonoBehaviour
     [SerializeField] private BallPositionChecker _ballPositionChecker;
     
     [SerializeField] private GameObject _mainCamera;
+    
+    [Header("UI")]
+    
+    [SerializeField] private PauseView _pauseView;
 
 #pragma warning restore
     
@@ -28,5 +34,16 @@ public class Entry : MonoBehaviour
 
         var gameplayManager = new GameplayManager(levelBuilder, levelSpawner, _ballPositionChecker, cameraMover);
         gameplayManager.Start();
+        
+        // Ui initialization
+
+        var pauseModel = new PauseModel();
+        
+        _pauseView.OnPause += _pauseView.Show;
+        _pauseView.OnPause += pauseModel.Pause;
+        _pauseView.OnResume += _pauseView.Hide;
+        _pauseView.OnResume += pauseModel.Resume;
+        
+        _pauseView.Init();
     }
 }
