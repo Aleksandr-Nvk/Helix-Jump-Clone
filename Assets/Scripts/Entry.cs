@@ -16,6 +16,10 @@ public class Entry : MonoBehaviour
     [SerializeField] private BallPositionChecker _ballPositionChecker;
     
     [SerializeField] private GameObject _mainCamera;
+
+    [SerializeField] private BallMovement _ballMovement;
+
+    [SerializeField] private BallBehaviour _ballBehaviour;
     
     [Header("UI")]
     
@@ -38,12 +42,6 @@ public class Entry : MonoBehaviour
         // Ui initialization
 
         var pauseModel = new PauseModel();
-        
-        _pauseView.OnPause += _pauseView.Show;
-        _pauseView.OnPause += pauseModel.Pause;
-        _pauseView.OnResume += _pauseView.Hide;
-        _pauseView.OnResume += pauseModel.Resume;
-        
-        _pauseView.Init();
+        _pauseView.Init(pauseModel, levelBuilder, cameraMover, _ballBehaviour, _ballMovement, _ballPositionChecker);
     }
 }

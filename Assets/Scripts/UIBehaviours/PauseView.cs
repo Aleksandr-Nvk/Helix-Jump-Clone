@@ -2,6 +2,8 @@ using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
 using Interfaces;
+using MainGameplay;
+using Models.UI;
 
 namespace UIBehaviours
 {
@@ -22,10 +24,27 @@ namespace UIBehaviours
         public UnityAction OnPause;
         public UnityAction OnResume;
 
-        public void Init()
+        public UnityAction OnRestart;
+
+        public void Init(PauseModel pauseModel, LevelBuilder levelBuilder, CameraMover cameraMover,
+            BallBehaviour ballBehaviour, BallMovement ballMovement, BallPositionChecker ballPositionChecker)
         {
+            OnPause += Show;
+            OnPause += pauseModel.Pause;
             _pauseButton.onClick.AddListener(OnPause);
+
+            OnResume += Hide;
+            OnResume += pauseModel.Resume;
             _resumeButton.onClick.AddListener(OnResume);
+
+            OnRestart += Hide;
+            OnRestart += pauseModel.Resume;
+            OnRestart += levelBuilder.Rebuild;
+            OnRestart += cameraMover.ResetPosition;
+            OnRestart += ballBehaviour.ResetPosition;
+            OnRestart += ballMovement.ResetRotation;
+            OnRestart += ballPositionChecker.Reset;
+            _restartButton.onClick.AddListener(OnRestart);
         }
         
         public void Show()

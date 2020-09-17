@@ -14,6 +14,13 @@ namespace MainGameplay
 
         private bool _canJump = true;
 
+        private Vector3 _startPosition;
+
+        private void Start()
+        {
+            _startPosition = transform.localPosition;
+        }
+
         private void FixedUpdate()
         {
             if (Math.Abs(_ball.velocity.y) < 0.01f)
@@ -26,6 +33,14 @@ namespace MainGameplay
                 Jump();
         }
 
+        /// <summary>
+        /// Resets ball position
+        /// </summary>
+        public void ResetPosition()
+        {
+            transform.localPosition = _startPosition;
+        }
+        
         /// <summary>
         /// Makes the ball jump
         /// </summary>

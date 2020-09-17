@@ -8,7 +8,7 @@ namespace MainGameplay
     #pragma warning disable 0649
     
         [SerializeField] private float _rotationSpeed = 20f;
-
+        
     #pragma warning restore
 
         private float _currentMousePosition;
@@ -32,6 +32,14 @@ namespace MainGameplay
 
                 _oldMousePosition = _currentMousePosition; // resetting written values
             }
+        }
+
+        /// <summary>
+        /// Resets ball rotation
+        /// </summary>
+        public void ResetRotation()
+        {
+            transform.rotation = Quaternion.identity;
         }
     }
 }

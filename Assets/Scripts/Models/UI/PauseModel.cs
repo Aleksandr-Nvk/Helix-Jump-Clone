@@ -4,8 +4,6 @@ namespace Models.UI
 {
     public class PauseModel
     {
-        private GameObject viewGameObject;
-        
         public void Pause()
         {
             Time.timeScale = 0f;

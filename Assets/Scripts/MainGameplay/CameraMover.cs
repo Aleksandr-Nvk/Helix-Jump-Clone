@@ -7,10 +7,16 @@ namespace MainGameplay
     public class CameraMover
     {
         private readonly GameObject _camera;
+
+        private readonly Vector3 _startPosition;
+
+        private Tween _cameraMoving;
         
         public CameraMover(GameObject mainCamera)
         {
             _camera = mainCamera;
+            
+            _startPosition = _camera.transform.localPosition;
         }
 
         /// <summary>
@@ -19,7 +25,16 @@ namespace MainGameplay
         /// <param name="nextPlatformYPosition"> Platform to move to </param>
         public void Move(float nextPlatformYPosition)
         {
-            _camera.transform.DOMoveY(nextPlatformYPosition, 1f);
+            _cameraMoving = _camera.transform.DOMoveY(nextPlatformYPosition, 1f);
+        }
+
+        /// <summary>
+        /// Resets camera position
+        /// </summary>
+        public void ResetPosition()
+        {
+            _cameraMoving.Kill(); // stop camera movement animation
+            _camera.transform.localPosition = _startPosition;
         }
     }
 }

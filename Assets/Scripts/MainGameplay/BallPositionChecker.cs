@@ -16,6 +16,8 @@ namespace MainGameplay
         
         private CameraMover _cameraMover;
 
+        private LevelSpawner _levelSpawner;
+
         /// <summary>
         /// MonoBehaviour constructor
         /// </summary>
@@ -25,6 +27,8 @@ namespace MainGameplay
         {
             _platformsYPositions = levelSpawner.GetLevelData().PlatformsYPositions;
             _piecesBehaviours = levelSpawner.GetLevelData().PiecesBehaviours;
+            
+            _levelSpawner = levelSpawner;
             _cameraMover = cameraMover;
         }
         
@@ -45,6 +49,15 @@ namespace MainGameplay
                 if ( _platformsYPositions.Count == 1) // check if only one platform left
                     Debug.Log("Won");
             }
+        }
+
+        /// <summary>
+        /// Resets data for the checker
+        /// </summary>
+        public void Reset()
+        {
+            _platformsYPositions = _levelSpawner.GetLevelData().PlatformsYPositions;
+            _piecesBehaviours = _levelSpawner.GetLevelData().PiecesBehaviours;
         }
     }
 }

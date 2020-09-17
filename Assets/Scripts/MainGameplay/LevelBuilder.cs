@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Containers;
+using Interfaces;
 using Settings;
 using Tools;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace MainGameplay
 {
@@ -13,6 +17,8 @@ namespace MainGameplay
         private readonly LevelModelCreator _levelModelCreator;
 
         private readonly LevelSpawner _levelSpawner;
+
+        private readonly LevelData _levelData;
 
         public LevelBuilder(GameplaySettings settings, LevelModelCreator levelModelCreator, LevelSpawner levelSpawner)
         {
@@ -34,6 +40,32 @@ namespace MainGameplay
             }
 
             _levelSpawner.InstantiatePiecesFromTypes(allPlatformsPiecesTypes);
+        }
+
+        /// <summary>
+        /// Deletes the current level and builds a new one
+        /// </summary>
+        public void Rebuild()
+        {
+            Clear();
+            Build();
+        }
+
+        private void Clear()
+        {
+            var levelData = _levelSpawner.GetLevelData();
+            levelData.PiecesBehaviours.Clear();
+            
+            foreach (var platform in levelData.AllPlatformsPieces)
+            {
+                foreach (var piece in platform.Pieces)
+                {        
+                    Object.Destroy(piece);
+                }
+            }
+            
+            levelData.AllPlatformsPieces.Clear();
+            levelData.PlatformsYPositions.Clear();
         }
     }
 }
