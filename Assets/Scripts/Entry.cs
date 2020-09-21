@@ -1,10 +1,10 @@
 using MainGameplay;
 using UnityEngine;
-using Managers;
 using Models.UI;
+using Managers;
 using Settings;
+using UIViews;
 using Tools;
-using UIBehaviours;
 
 // main composition root
 public class Entry : MonoBehaviour
@@ -35,13 +35,14 @@ public class Entry : MonoBehaviour
         var levelSpawner = new LevelSpawner(_settings);
         var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
         var cameraMover = new CameraMover(_mainCamera);
+        var pauseModel = new PauseManager();
 
-        var gameplayManager = new GameplayManager(levelBuilder, levelSpawner, _ballPositionChecker, cameraMover);
+        var gameplayManager = new GameSession(levelBuilder, levelSpawner, pauseModel, _ballPositionChecker,
+            _ballBehaviour, _ballMovement, cameraMover);
         gameplayManager.Start();
         
         // Ui initialization
 
-        var pauseModel = new PauseModel();
-        _pauseView.Init(pauseModel, levelBuilder, cameraMover, _ballBehaviour, _ballMovement, _ballPositionChecker);
+        _pauseView.Init(pauseModel, gameplayManager);
     }
 }
