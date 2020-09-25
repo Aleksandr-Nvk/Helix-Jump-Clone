@@ -1,8 +1,7 @@
 using MainGameplay;
-using Models.UI;
 using Tools;
 
-namespace Managers
+namespace Models
 {
     // main gameplay manager
     public class GameSession
@@ -21,7 +20,6 @@ namespace Managers
         
         private readonly CameraMover _cameraMover;
         
-
         public GameSession(LevelBuilder levelBuilder, LevelSpawner levelSpawner, PauseManager pauseManager,
             BallPositionChecker ballPositionChecker, BallBehaviour ballBehaviour, BallMovement ballMovement, CameraMover cameraMover)
         {

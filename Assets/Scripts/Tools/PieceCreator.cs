@@ -18,27 +18,27 @@ namespace Tools
         /// Creates new Piece Model from random Piece Type
         /// </summary>
         /// <returns> Random Piece Model </returns>
-        public PieceModel CreateRandom()
+        public Piece CreateRandom()
         {
-            return new PieceModel(GetRandomType());
+            return new Piece(GetRandomType());
         }
 
         /// <summary>
         /// Creates new Friendly Piece Model
         /// </summary>
         /// <returns> Friendly Piece Model </returns>
-        public PieceModel CreateFriendly()
+        public Piece CreateFriendly()
         {
-            return new PieceModel(PieceType.Friendly);
+            return new Piece(PieceType.Friendly);
         }
 
         /// <summary>
         /// Creates new Enemy Piece Model
         /// </summary>
         /// <returns> Enemy Piece Model </returns>
-        public PieceModel CreateEnemy()
+        public Piece CreateEnemy()
         {
-            return new PieceModel(PieceType.Enemy);
+            return new Piece(PieceType.Enemy);
         }
 
         /// <summary>

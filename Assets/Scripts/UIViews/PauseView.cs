@@ -1,7 +1,6 @@
 using UnityEngine.UI;
 using UnityEngine;
-using Models.UI;
-using Managers;
+using Models;
 
 namespace UIViews
 {
@@ -19,15 +18,42 @@ namespace UIViews
         
     #pragma warning restore
 
-        public void Init(PauseManager pauseManager, GameSession gameSession)
+        private MainMenuView _mainMenuView;
+
+        public void Init(PauseManager pauseManager, GameSession gameSession, MainMenuView mainMenuView)
         {
+            gameObject.SetActive(pauseManager.IsPaused);
+
             _pauseButton.onClick.AddListener(pauseManager.Pause);
             
             _resumeButton.onClick.AddListener(pauseManager.Resume);
             
             _restartButton.onClick.AddListener(gameSession.Restart);
 
-            pauseManager.OnPauseChanged += show => gameObject.SetActive(show);
+            pauseManager.OnPauseChanged += show =>
+            {
+                gameObject.SetActive(show);
+                ShowPauseButtonSeparately(!show);
+            };
+            
+            _homeButton.onClick.AddListener(() =>
+            {
+                pauseManager.Home(); // sets timescale and calls an event
+                gameSession.Restart(); // restarts the game
+                mainMenuView.gameObject.SetActive(true); // activates the main menu
+                ShowPauseButtonSeparately(false); // hides the pause button
+                
+                mainMenuView.Init(this); // restarts ScreenTapChecker
+            });
+        }
+
+        /// <summary>
+        /// Shows or hides the pause button separately from the whole pause menu
+        /// </summary>
+        /// <param name="show"></param>
+        public void ShowPauseButtonSeparately(bool show)
+        {
+            _pauseButton.gameObject.SetActive(show);
         }
     }
 }

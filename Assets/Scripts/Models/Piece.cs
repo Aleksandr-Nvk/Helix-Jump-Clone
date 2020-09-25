@@ -1,6 +1,6 @@
 namespace Models
 {
-    public class PieceModel
+    public class Piece
     {
         private readonly PieceType _type;
         
@@ -8,7 +8,7 @@ namespace Models
 
         public bool IsFriendly => _type == PieceType.Friendly;
 
-        public PieceModel(PieceType type)
+        public Piece(PieceType type)
         {
             _type = type;
         }

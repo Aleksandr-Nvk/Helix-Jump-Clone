@@ -43,14 +43,10 @@
             <e p="LevelBuilder.cs" t="Include" />
             <e p="PieceBehaviour.cs" t="Include" />
           </e>
-          <e p="Managers" t="Include">
-            <e p="GameSession.cs" t="Include" />
-          </e>
           <e p="Models" t="Include">
-            <e p="PieceModel.cs" t="Include" />
-            <e p="UI" t="Include">
-              <e p="PauseManager.cs" t="Include" />
-            </e>
+            <e p="GameSession.cs" t="Include" />
+            <e p="PauseManager.cs" t="Include" />
+            <e p="Piece.cs" t="Include" />
           </e>
           <e p="Settings" t="Include">
             <e p="GameplaySettings.cs" t="Include" />
@@ -62,6 +58,7 @@
           </e>
           <e p="Types.cs" t="Include" />
           <e p="UIViews" t="Include">
+            <e p="MainMenuView.cs" t="Include" />
             <e p="PauseView.cs" t="Include" />
           </e>
         </e>

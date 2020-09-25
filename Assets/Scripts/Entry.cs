@@ -1,7 +1,6 @@
 using MainGameplay;
 using UnityEngine;
-using Models.UI;
-using Managers;
+using Models;
 using Settings;
 using UIViews;
 using Tools;
@@ -25,6 +24,8 @@ public class Entry : MonoBehaviour
     
     [SerializeField] private PauseView _pauseView;
 
+    [SerializeField] private MainMenuView _mainMenuView;
+    
 #pragma warning restore
     
     private void Start()
@@ -43,6 +44,7 @@ public class Entry : MonoBehaviour
         
         // Ui initialization
 
-        _pauseView.Init(pauseModel, gameplayManager);
+        _pauseView.Init(pauseModel, gameplayManager, _mainMenuView);
+        _mainMenuView.Init(_pauseView);
     }
 }
