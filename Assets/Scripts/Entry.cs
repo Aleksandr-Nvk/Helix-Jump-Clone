@@ -36,15 +36,15 @@ public class Entry : MonoBehaviour
         var levelSpawner = new LevelSpawner(_settings);
         var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
         var cameraMover = new CameraMover(_mainCamera);
-        var pauseModel = new PauseManager();
+        var pauseManager = new PauseManager();
 
-        var gameplayManager = new GameSession(levelBuilder, levelSpawner, pauseModel, _ballPositionChecker,
+        var gameSession = new GameSession(levelBuilder, levelSpawner, pauseManager, _ballPositionChecker,
             _ballBehaviour, _ballMovement, cameraMover);
-        gameplayManager.Start();
+        gameSession.Start();
         
         // Ui initialization
 
-        _pauseView.Init(pauseModel, gameplayManager, _mainMenuView);
-        _mainMenuView.Init(_pauseView);
+        _pauseView.Init(pauseManager, gameSession, _mainMenuView);
+        _mainMenuView.Init(pauseManager, gameSession);
     }
 }

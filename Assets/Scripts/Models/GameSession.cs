@@ -1,3 +1,4 @@
+using System;
 using MainGameplay;
 using Tools;
 
@@ -19,6 +20,22 @@ namespace Models
         private readonly BallMovement _ballMovement;
         
         private readonly CameraMover _cameraMover;
+
+        private bool _isSessionInProgress = false;
+
+        public Action<bool> OnSessionProgressChanged;
+        
+        public bool IsSessionInProgress
+        {
+            get => _isSessionInProgress;
+            set {
+                if (value != _isSessionInProgress)
+                {
+                    _isSessionInProgress = value;
+                    OnSessionProgressChanged?.Invoke(_isSessionInProgress);
+                }
+            }
+        }
         
         public GameSession(LevelBuilder levelBuilder, LevelSpawner levelSpawner, PauseManager pauseManager,
             BallPositionChecker ballPositionChecker, BallBehaviour ballBehaviour, BallMovement ballMovement, CameraMover cameraMover)

@@ -1,4 +1,5 @@
 using System.Collections;
+using Models;
 using UnityEngine.UI;
 using UnityEngine;
 
@@ -13,11 +14,14 @@ namespace UIViews
 
 #pragma warning restore
 
-        private PauseView _pauseView;
+        private PauseManager _pauseManager;
+
+        private GameSession _gameSession;
         
-        public void Init(PauseView pauseView)
+        public void Init(PauseManager pauseManager, GameSession gameSession)
         {
-            _pauseView = pauseView;
+            _pauseManager = pauseManager;
+            _gameSession = gameSession;
             
             StartCoroutine(CheckScreenTap());
         }
@@ -28,8 +32,8 @@ namespace UIViews
             {
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
+                    _gameSession.IsSessionInProgress = true;
                     gameObject.SetActive(false);
-                    _pauseView.ShowPauseButtonSeparately(true);
                 }
                 
                 yield return null;

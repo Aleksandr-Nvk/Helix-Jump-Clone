@@ -19,7 +19,7 @@ namespace UIViews
     #pragma warning restore
 
         private MainMenuView _mainMenuView;
-
+        
         public void Init(PauseManager pauseManager, GameSession gameSession, MainMenuView mainMenuView)
         {
             gameObject.SetActive(pauseManager.IsPaused);
@@ -29,31 +29,27 @@ namespace UIViews
             _resumeButton.onClick.AddListener(pauseManager.Resume);
             
             _restartButton.onClick.AddListener(gameSession.Restart);
+            
+            gameSession.OnSessionProgressChanged +=
+                b => ShowPauseButton(gameSession.IsSessionInProgress, pauseManager.IsPaused);
+                
+            pauseManager.OnPauseChanged +=
+                b => ShowPauseButton(gameSession.IsSessionInProgress, pauseManager.IsPaused);
 
-            pauseManager.OnPauseChanged += show =>
-            {
-                gameObject.SetActive(show);
-                ShowPauseButtonSeparately(!show);
-            };
+            pauseManager.OnPauseChanged += show => gameObject.SetActive(show);
             
             _homeButton.onClick.AddListener(() =>
             {
-                pauseManager.Home(); // sets timescale and calls an event
                 gameSession.Restart(); // restarts the game
+                gameSession.IsSessionInProgress = false;
                 mainMenuView.gameObject.SetActive(true); // activates the main menu
-                ShowPauseButtonSeparately(false); // hides the pause button
-                
-                mainMenuView.Init(this); // restarts ScreenTapChecker
+                mainMenuView.Init(pauseManager, gameSession); // restarts ScreenTapChecker
             });
         }
 
-        /// <summary>
-        /// Shows or hides the pause button separately from the whole pause menu
-        /// </summary>
-        /// <param name="show"></param>
-        public void ShowPauseButtonSeparately(bool show)
+        private void ShowPauseButton(bool isSessionInProgress, bool isPaused)
         {
-            _pauseButton.gameObject.SetActive(show);
+            _pauseButton.gameObject.SetActive(isSessionInProgress && !isPaused);
         }
     }
 }
