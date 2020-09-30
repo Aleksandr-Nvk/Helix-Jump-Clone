@@ -5,40 +5,26 @@ namespace Models
 {
     public class PauseManager
     {
-        private bool _isPaused
-        {
-            get => Mathf.Approximately(Time.timeScale, 0f);
-            set {}
-        }
-
         public Action<bool> OnPauseChanged;
-        
+
         public bool IsPaused
         {
-            get => _isPaused;
-            set {
-                if (value != _isPaused)
-                {
-                    _isPaused = value;
-                    OnPauseChanged?.Invoke(_isPaused);
-                }
-            }
+            get => Mathf.Approximately(Time.timeScale, 0f);
+            private set => Time.timeScale = value ? 0f : 1f;
         }
-        
+
         public void Pause()
         {
-            if (!IsPaused)
-            {
-                Time.timeScale = 0f;
+            if (!IsPaused) {
+                IsPaused = true;
                 OnPauseChanged?.Invoke(true);
             }
         }
 
         public void Resume()
         {
-            if (IsPaused)
-            {
-                Time.timeScale = 1f;
+            if (IsPaused) {
+                IsPaused = false;
                 OnPauseChanged?.Invoke(false);
             }
         }
