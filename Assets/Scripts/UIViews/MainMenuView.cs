@@ -1,7 +1,6 @@
-using System.Collections;
-using Models;
 using UnityEngine.UI;
 using UnityEngine;
+using Models;
 
 namespace UIViews
 {
@@ -13,31 +12,25 @@ namespace UIViews
         [SerializeField] private Button _shopButton;
 
 #pragma warning restore
-
-        private PauseManager _pauseManager;
-
+        
         private GameSession _gameSession;
         
-        public void Init(PauseManager pauseManager, GameSession gameSession)
+        public void Init(GameSession gameSession)
         {
-            _pauseManager = pauseManager;
             _gameSession = gameSession;
             
-            StartCoroutine(CheckScreenTap());
+            _gameSession.OnSessionProgressChanged += ShowMainMenuView;
         }
 
-        private IEnumerator CheckScreenTap()
+        private void Update()
         {
-            while (true)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    _gameSession.IsSessionInProgress = true;
-                    gameObject.SetActive(false);
-                }
-                
-                yield return null;
-            }
+            if (Input.GetKeyDown(KeyCode.Space))
+                _gameSession.Start();
+        }
+
+        private void ShowMainMenuView(bool show)
+        {
+            gameObject.SetActive(show);
         }
     }
 }

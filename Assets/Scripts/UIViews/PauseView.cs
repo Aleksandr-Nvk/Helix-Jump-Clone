@@ -20,7 +20,7 @@ namespace UIViews
 
         private MainMenuView _mainMenuView;
         
-        public void Init(PauseManager pauseManager, GameSession gameSession, MainMenuView mainMenuView)
+        public void Init(PauseManager pauseManager, GameSession gameSession)
         {
             gameObject.SetActive(pauseManager.IsPaused);
 
@@ -30,21 +30,13 @@ namespace UIViews
             
             _restartButton.onClick.AddListener(gameSession.Restart);
             
-            gameSession.OnSessionProgressChanged +=
-                b => ShowPauseButton(gameSession.IsSessionInProgress, pauseManager.IsPaused);
+            _homeButton.onClick.AddListener(gameSession.EndGameSession);
+
+            gameSession.OnSessionProgressChanged += b => ShowPauseButton(gameSession.IsSessionInProgress, pauseManager.IsPaused);
                 
-            pauseManager.OnPauseChanged +=
-                b => ShowPauseButton(gameSession.IsSessionInProgress, pauseManager.IsPaused);
+            pauseManager.OnPauseChanged += b => ShowPauseButton(gameSession.IsSessionInProgress, pauseManager.IsPaused);
 
             pauseManager.OnPauseChanged += show => gameObject.SetActive(show);
-            
-            _homeButton.onClick.AddListener(() =>
-            {
-                gameSession.Restart(); // restarts the game
-                gameSession.IsSessionInProgress = false;
-                mainMenuView.gameObject.SetActive(true); // activates the main menu
-                mainMenuView.Init(pauseManager, gameSession); // restarts ScreenTapChecker
-            });
         }
 
         private void ShowPauseButton(bool isSessionInProgress, bool isPaused)
