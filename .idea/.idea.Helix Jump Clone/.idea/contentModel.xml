@@ -58,6 +58,7 @@
           </e>
           <e p="Types.cs" t="Include" />
           <e p="UIViews" t="Include">
+            <e p="GameOverView.cs" t="Include" />
             <e p="MainMenuView.cs" t="Include" />
             <e p="PauseView.cs" t="Include" />
           </e>

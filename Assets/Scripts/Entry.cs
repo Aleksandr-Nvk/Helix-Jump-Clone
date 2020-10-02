@@ -25,6 +25,8 @@ public class Entry : MonoBehaviour
     [SerializeField] private PauseView _pauseView;
 
     [SerializeField] private MainMenuView _mainMenuView;
+
+    [SerializeField] private GameOverView _gameOverView;
     
 #pragma warning restore
     
@@ -40,10 +42,13 @@ public class Entry : MonoBehaviour
 
         var gameSession = new GameSession(levelBuilder, levelSpawner, pauseManager, _ballPositionChecker, _ballBehaviour,
             _ballMovement, cameraMover);
+
+        _ballBehaviour.Init(gameSession);
         
         // Ui initialization
 
         _pauseView.Init(pauseManager, gameSession);
         _mainMenuView.Init(gameSession);
+        _gameOverView.Init(gameSession);
     }
 }

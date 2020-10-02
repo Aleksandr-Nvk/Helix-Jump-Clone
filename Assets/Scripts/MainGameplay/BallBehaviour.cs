@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System;
+using DG.Tweening;
+using Models;
 
 namespace MainGameplay
 {
@@ -16,8 +18,12 @@ namespace MainGameplay
 
         private Vector3 _startPosition;
 
-        private void Start()
+        private GameSession _gameSession;
+
+        public void Init(GameSession gameSession)
         {
+            _gameSession = gameSession;
+            
             _startPosition = transform.localPosition;
         }
 
@@ -29,15 +35,25 @@ namespace MainGameplay
 
         private void OnCollisionEnter(Collision collision)
         {
-            if (_canJump)
-                Jump();
+            if (!collision.collider.gameObject.CompareTag("EnemyPiece"))
+            {
+                if (_canJump)
+                    Jump();
+            }
+            else
+            {
+                Destroy();
+                _gameSession.EndGameSessionCompletely();
+            }
+            
         }
 
         /// <summary>
         /// Resets ball position
         /// </summary>
-        public void ResetPosition()
+        public void Reset()
         {
+            _ball.gameObject.transform.DOScale(Vector3.one, 1f);
             transform.localPosition = _startPosition;
         }
         
@@ -50,6 +66,14 @@ namespace MainGameplay
             _ball.AddForce(Vector3.up * 4f, ForceMode.Impulse);
 
             _canJump = false;
+        }
+
+        /// <summary>
+        /// Runs the animation of ball destruction
+        /// </summary>
+        public void Destroy()
+        {
+            _ball.gameObject.transform.DOScale(Vector3.zero, 1f);
         }
     }
 }

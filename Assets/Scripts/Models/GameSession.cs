@@ -21,8 +21,11 @@ namespace Models
 
         private bool _isSessionInProgress = false;
 
+        private bool _isGameOver = false;
+
         public Action<bool> OnSessionProgressChanged;
-        
+        public Action<bool> OnGameOver;
+
         public bool IsSessionInProgress
         {
             get => _isSessionInProgress;
@@ -31,6 +34,18 @@ namespace Models
                 {
                     _isSessionInProgress = value;
                     OnSessionProgressChanged?.Invoke(!_isSessionInProgress);
+                }
+            }
+        }
+        
+        public bool IsGameOver
+        {
+            get => _isGameOver;
+            private set {
+                if (value != _isGameOver)
+                {
+                    _isGameOver = value;
+                    OnGameOver?.Invoke(_isGameOver);
                 }
             }
         }
@@ -66,18 +81,28 @@ namespace Models
             
             _levelBuilder.Rebuild();
             _cameraMover.ResetPosition();
-            _ballBehaviour.ResetPosition();
+            _ballBehaviour.Reset();
             _ballMovement.ResetRotation();
             _ballPositionChecker.Reset();
+
+            IsGameOver = false;
         }
         
         /// <summary>
-        /// End the current session
+        /// End the current session and restarts it
         /// </summary>
         public void EndGameSession()
         {
             Restart();
             IsSessionInProgress = false;
+        }
+
+        /// <summary>
+        /// End the current session
+        /// </summary>
+        public void EndGameSessionCompletely()
+        {
+            IsGameOver = true;
         }
     }
 }
