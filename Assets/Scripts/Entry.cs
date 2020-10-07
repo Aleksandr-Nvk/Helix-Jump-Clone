@@ -23,11 +23,11 @@ public class Entry : MonoBehaviour
     [Header("UI")]
     
     [SerializeField] private PauseView _pauseView;
-
-    [SerializeField] private MainMenuView _mainMenuView;
-
+    
     [SerializeField] private GameOverView _gameOverView;
     
+    [SerializeField] private MainView _mainView;
+
 #pragma warning restore
     
     private void Start()
@@ -46,9 +46,9 @@ public class Entry : MonoBehaviour
         _ballBehaviour.Init(gameSession);
         
         // Ui initialization
-
+        
+        _mainView.Init(gameSession);
         _pauseView.Init(pauseManager, gameSession);
-        _mainMenuView.Init(gameSession);
         _gameOverView.Init(gameSession);
     }
 }

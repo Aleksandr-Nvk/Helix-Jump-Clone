@@ -18,7 +18,7 @@ namespace UIViews
         
     #pragma warning restore
 
-        private MainMenuView _mainMenuView;
+        private StartView _startView;
         
         public void Init(PauseManager pauseManager, GameSession gameSession)
         {
@@ -39,6 +39,11 @@ namespace UIViews
             pauseManager.OnPauseChanged += show => gameObject.SetActive(show);
         }
 
+        /// <summary>
+        /// Shows the pause button if conditions are completed
+        /// </summary>
+        /// <param name="isSessionInProgress"> is session in progress? </param>
+        /// <param name="isPaused"> is session paused? </param>
         private void ShowPauseButton(bool isSessionInProgress, bool isPaused)
         {
             _pauseButton.gameObject.SetActive(isSessionInProgress && !isPaused);

@@ -59,8 +59,11 @@
           <e p="Types.cs" t="Include" />
           <e p="UIViews" t="Include">
             <e p="GameOverView.cs" t="Include" />
-            <e p="MainMenuView.cs" t="Include" />
+            <e p="MainView.cs" t="Include" />
             <e p="PauseView.cs" t="Include" />
+            <e p="SettingsView.cs" t="Include" />
+            <e p="ShopView.cs" t="Include" />
+            <e p="StartView.cs" t="Include" />
           </e>
         </e>
         <e p="TextMesh Pro" t="Include">
