@@ -20,9 +20,12 @@ namespace MainGameplay
 
         private GameSession _gameSession;
 
-        public void Init(GameSession gameSession)
+        private SettingsManager _settingsManager;
+
+        public void Init(GameSession gameSession, SettingsManager settingsManager)
         {
             _gameSession = gameSession;
+            _settingsManager = settingsManager;
             
             _startPosition = transform.localPosition;
         }
@@ -62,6 +65,8 @@ namespace MainGameplay
         /// </summary>
         private void Jump()
         {
+            Debug.Log("Blob");
+            
             _ball.velocity = Vector3.zero;
             _ball.AddForce(Vector3.up * 4f, ForceMode.Impulse);
 
@@ -73,6 +78,12 @@ namespace MainGameplay
         /// </summary>
         public void Destroy()
         {
+            if (_settingsManager.IsVibrationOn)
+            {
+                Debug.Log("жжжжжжж");
+                Handheld.Vibrate();
+            }
+
             _ball.gameObject.transform.DOScale(Vector3.zero, 1f);
         }
     }

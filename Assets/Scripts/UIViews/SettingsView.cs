@@ -1,6 +1,7 @@
 using UnityEngine.Events;
 using UnityEngine.UI;
 using UnityEngine;
+using Models;
 
 namespace UIViews
 {
@@ -10,13 +11,21 @@ namespace UIViews
 
         [SerializeField] private Button _closeButton;
 
-#pragma warning restore
+        [SerializeField] private Button _volume;
+        [SerializeField] private Button _vibration;
+        [SerializeField] private Button _info;
         
-        public UnityAction OnCloseButtonPressed;
+#pragma warning restore
 
-        public void Init()
+        public UnityAction OnCloseButtonPressed;
+        
+        public void Init(SettingsManager settingsManager)
         {
             _closeButton.onClick.AddListener(OnCloseButtonPressed);
+            
+            _volume.onClick.AddListener(settingsManager.SetMute);
+            _vibration.onClick.AddListener(settingsManager.SetVibration);
+            _info.onClick.AddListener(() => Application.OpenURL("https://www.google.com"));
         }
         
         /// <summary>

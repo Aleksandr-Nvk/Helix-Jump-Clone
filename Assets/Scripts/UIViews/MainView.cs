@@ -15,7 +15,7 @@ namespace UIViews
         
 #pragma warning restore
 
-        public void Init(GameSession gameSession)
+        public void Init(GameSession gameSession, SettingsManager settingsManager, ShopManager shopManager)
         {
             _startView.OnShopButtonPressed += () =>
             {
@@ -49,8 +49,8 @@ namespace UIViews
             // monobehaviours' initializations
             
             _startView.Init(gameSession);
-            _shopView.Init();
-            _settingsView.Init();
+            _shopView.Init(shopManager);
+            _settingsView.Init(settingsManager);
         }
 
         /// <summary>

@@ -9,25 +9,32 @@ using Tools;
 public class Entry : MonoBehaviour
 {
 #pragma warning disable 0649
-        
+    [Header("Unity objects")]
+    
+    [SerializeField] private GameObject _mainCamera;
+    
+    [SerializeField] private AudioSource _audioSource;
+
+    [SerializeField] private Material _ballMaterial;
+    
+    [Header("Behaviours")]
+
     [SerializeField] private GameplaySettings _settings;
     
     [SerializeField] private BallPositionChecker _ballPositionChecker;
     
-    [SerializeField] private GameObject _mainCamera;
-
     [SerializeField] private BallMovement _ballMovement;
 
     [SerializeField] private BallBehaviour _ballBehaviour;
     
     [Header("UI")]
     
+    [SerializeField] private MainView _mainView;
+    
     [SerializeField] private PauseView _pauseView;
     
     [SerializeField] private GameOverView _gameOverView;
     
-    [SerializeField] private MainView _mainView;
-
 #pragma warning restore
     
     private void Start()
@@ -39,15 +46,17 @@ public class Entry : MonoBehaviour
         var levelBuilder = new LevelBuilder(_settings, levelModelCreator, levelSpawner);
         var cameraMover = new CameraMover(_mainCamera);
         var pauseManager = new PauseManager();
+        var settingsManager = new SettingsManager(_audioSource);
+        var shopManager = new ShopManager(_ballMaterial);
 
         var gameSession = new GameSession(levelBuilder, levelSpawner, pauseManager, _ballPositionChecker, _ballBehaviour,
             _ballMovement, cameraMover);
 
-        _ballBehaviour.Init(gameSession);
+        _ballBehaviour.Init(gameSession, settingsManager);
         
         // Ui initialization
         
-        _mainView.Init(gameSession);
+        _mainView.Init(gameSession, settingsManager, shopManager);
         _pauseView.Init(pauseManager, gameSession);
         _gameOverView.Init(gameSession);
     }
