@@ -103,6 +103,7 @@ namespace Models
         public void EndGameSessionCompletely()
         {
             IsGameOver = true;
+            IsSessionInProgress = false;
         }
     }
 }

@@ -52,7 +52,7 @@ public class Entry : MonoBehaviour
         var gameSession = new GameSession(levelBuilder, levelSpawner, pauseManager, _ballPositionChecker, _ballBehaviour,
             _ballMovement, cameraMover);
 
-        _ballBehaviour.Init(gameSession, settingsManager);
+        _ballBehaviour.Init(gameSession, settingsManager, _settings, _audioSource);
         
         // Ui initialization
         

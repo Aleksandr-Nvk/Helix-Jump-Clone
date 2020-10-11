@@ -2,6 +2,7 @@
 using System;
 using DG.Tweening;
 using Models;
+using Settings;
 
 namespace MainGameplay
 {
@@ -22,17 +23,24 @@ namespace MainGameplay
 
         private SettingsManager _settingsManager;
 
-        public void Init(GameSession gameSession, SettingsManager settingsManager)
+        private GameObject _spot;
+
+        private AudioSource _mainAudioSource;
+
+        public void Init(GameSession gameSession, SettingsManager settingsManager, GameplaySettings gameplaySettings,
+            AudioSource mainAudioSource)
         {
             _gameSession = gameSession;
             _settingsManager = settingsManager;
+            _spot = gameplaySettings.Spot;
+            _mainAudioSource = mainAudioSource;
             
             _startPosition = transform.localPosition;
         }
 
         private void FixedUpdate()
         {
-            if (Math.Abs(_ball.velocity.y) < 0.01f)
+            if (Math.Abs(_ball.velocity.y) < 0.01f && !_ball.isKinematic)
                 _canJump = true;
         }
 
@@ -41,7 +49,11 @@ namespace MainGameplay
             if (!collision.collider.gameObject.CompareTag("EnemyPiece"))
             {
                 if (_canJump)
+                { 
+                    SpawnSpot(collision); 
                     Jump();
+                    _mainAudioSource.Play();
+                }
             }
             else
             {
@@ -57,6 +69,7 @@ namespace MainGameplay
         public void Reset()
         {
             _ball.gameObject.transform.DOScale(Vector3.one, 1f);
+            _ball.isKinematic = false;
             transform.localPosition = _startPosition;
         }
         
@@ -65,8 +78,6 @@ namespace MainGameplay
         /// </summary>
         private void Jump()
         {
-            Debug.Log("Blob");
-            
             _ball.velocity = Vector3.zero;
             _ball.AddForce(Vector3.up * 4f, ForceMode.Impulse);
 
@@ -76,15 +87,22 @@ namespace MainGameplay
         /// <summary>
         /// Runs the animation of ball destruction
         /// </summary>
-        public void Destroy()
+        private void Destroy()
         {
             if (_settingsManager.IsVibrationOn)
             {
-                Debug.Log("жжжжжжж");
                 Handheld.Vibrate();
             }
 
             _ball.gameObject.transform.DOScale(Vector3.zero, 1f);
+            _ball.isKinematic = true;
+        }
+
+        private void SpawnSpot(Collision collision)
+        {
+            var spawnPosition = new Vector3(0f, 0.005f) + collision.GetContact(0).point;
+            var newSpot = Instantiate(_spot, spawnPosition, _spot.transform.rotation);
+            UnityEngine.Object.Destroy(newSpot, 1f);
         }
     }
 }

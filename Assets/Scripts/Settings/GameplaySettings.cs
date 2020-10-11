@@ -20,7 +20,11 @@ namespace Settings
         
         [SerializeField] private PieceTypeToPrefab _pieceTypeToPrefab;
         
-    #pragma warning restore
+        [Header("Ball settings")]
+        
+        [SerializeField] private GameObject _spot;
+
+#pragma warning restore
         
         public int PlatformsCount => _platformsCount;
 
@@ -29,5 +33,7 @@ namespace Settings
         public float EnemyPieceSpawnProbability => _enemyPieceSpawnProbability;
         
         public PieceTypeToPrefab PieceTypeToPrefab => _pieceTypeToPrefab;
+
+        public GameObject Spot => _spot;
     }
 }
